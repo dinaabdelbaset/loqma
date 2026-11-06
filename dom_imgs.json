@@ -1,0 +1,329 @@
+{
+  "result": {
+    "type": "object",
+    "value": [
+      {
+        "src": "http://localhost:5173/src/assets/boho_evening_wall.jpg?t=1793499125038",
+        "naturalWidth": 1026,
+        "rect": {
+          "top": 89.5,
+          "bottom": 749.5,
+          "left": 0,
+          "right": 747,
+          "width": 747,
+          "height": 660
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/burger/burger-bottom.png",
+        "naturalWidth": 350,
+        "rect": {
+          "top": 303.65625,
+          "bottom": 557.609375,
+          "left": 209.5,
+          "right": 537.5,
+          "width": 328,
+          "height": 253.953125
+        },
+        "computedOpacity": "1",
+        "computedTransform": "matrix(1, 0, 0, 1, -164, 0)"
+      },
+      {
+        "src": "http://localhost:5173/images/burger/burger-patty.png",
+        "naturalWidth": 433,
+        "rect": {
+          "top": 222.03125,
+          "bottom": 519.609375,
+          "left": 217.5,
+          "right": 529.5,
+          "width": 312,
+          "height": 297.578125
+        },
+        "computedOpacity": "1",
+        "computedTransform": "matrix(1, 0, 0, 1, -156, 0)"
+      },
+      {
+        "src": "http://localhost:5173/images/burger/cheese.png",
+        "naturalWidth": 376,
+        "rect": {
+          "top": 306.140625,
+          "bottom": 489.203125,
+          "left": 229.5,
+          "right": 517.5,
+          "width": 288,
+          "height": 183.0625
+        },
+        "computedOpacity": "1",
+        "computedTransform": "matrix(1, 0, 0, 1, -144, 0)"
+      },
+      {
+        "src": "http://localhost:5173/images/burger/tomato.png",
+        "naturalWidth": 625,
+        "rect": {
+          "top": 200.5,
+          "bottom": 466.40625,
+          "left": 237.5,
+          "right": 509.5,
+          "width": 272,
+          "height": 265.90625
+        },
+        "computedOpacity": "1",
+        "computedTransform": "matrix(1, 0, 0, 1, -136, 0)"
+      },
+      {
+        "src": "http://localhost:5173/images/burger/lettuce.png",
+        "naturalWidth": 728,
+        "rect": {
+          "top": 187.03125,
+          "bottom": 443.609375,
+          "left": 201.5,
+          "right": 545.5,
+          "width": 344,
+          "height": 256.578125
+        },
+        "computedOpacity": "1",
+        "computedTransform": "matrix(1, 0, 0, 1, -172, 0)"
+      },
+      {
+        "src": "http://localhost:5173/images/burger/burger-top.png",
+        "naturalWidth": 510,
+        "rect": {
+          "top": 301.578125,
+          "bottom": 420.8125,
+          "left": 205.5,
+          "right": 541.5,
+          "width": 336,
+          "height": 119.234375
+        },
+        "computedOpacity": "1",
+        "computedTransform": "matrix(1, 0, 0, 1, -168, 0)"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/best-sellers.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 978.5,
+          "bottom": 1154.5,
+          "left": 387.5,
+          "right": 713,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/soups.jpg",
+        "naturalWidth": 1000,
+        "rect": {
+          "top": 978.5,
+          "bottom": 1154.5,
+          "left": 34,
+          "right": 359.5,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/salads.jpg",
+        "naturalWidth": 1000,
+        "rect": {
+          "top": 1277,
+          "bottom": 1453,
+          "left": 387.5,
+          "right": 713,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 1277,
+          "bottom": 1453,
+          "left": 34,
+          "right": 359.5,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/hagouga.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 1575.5,
+          "bottom": 1751.5,
+          "left": 387.5,
+          "right": 713,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/charcoal-grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 1575.5,
+          "bottom": 1751.5,
+          "left": 34,
+          "right": 359.5,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/pigeon-duck.jpg",
+        "naturalWidth": 1200,
+        "rect": {
+          "top": 1893.5,
+          "bottom": 2069.5,
+          "left": 387.5,
+          "right": 713,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/rustic-oven.jpg",
+        "naturalWidth": 1000,
+        "rect": {
+          "top": 1893.5,
+          "bottom": 2069.5,
+          "left": 34,
+          "right": 359.5,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/charcoal-grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 2519,
+          "bottom": 2695,
+          "left": 387.5,
+          "right": 713,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/charcoal-grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 2519,
+          "bottom": 2695,
+          "left": 34,
+          "right": 359.5,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/charcoal-grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 2927,
+          "bottom": 3103,
+          "left": 387.5,
+          "right": 713,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/charcoal-grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 2927,
+          "bottom": 3103,
+          "left": 34,
+          "right": 359.5,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/charcoal-grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 3335,
+          "bottom": 3511,
+          "left": 387.5,
+          "right": 713,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/charcoal-grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 3335,
+          "bottom": 3511,
+          "left": 34,
+          "right": 359.5,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/charcoal-grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 3743,
+          "bottom": 3919,
+          "left": 387.5,
+          "right": 713,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      },
+      {
+        "src": "http://localhost:5173/images/categories/charcoal-grills.jpg",
+        "naturalWidth": 1376,
+        "rect": {
+          "top": 3743,
+          "bottom": 3919,
+          "left": 34,
+          "right": 359.5,
+          "width": 325.5,
+          "height": 176
+        },
+        "computedOpacity": "1",
+        "computedTransform": "none"
+      }
+    ]
+  }
+}

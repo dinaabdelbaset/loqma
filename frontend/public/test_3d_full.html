@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Full 3D Burger Inspection</title>
+  <style>
+    body { margin: 0; background: #140E0A; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    canvas { width: 500px; height: 420px; }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="module">
+    import * as THREE from '/node_modules/three/build/three.module.js';
+    import { GLTFLoader } from '/node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, 500 / 420, 0.1, 100);
+    camera.position.set(0, 0.2, 3.8);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(500, 420);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.35;
+    document.getElementById('container').appendChild(renderer.domElement);
+
+    // Three-point lighting setup
+    const ambientLight = new THREE.AmbientLight(0xfff3e0, 1.4);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffa726, 3.0); // amber lamp from top-front
+    keyLight.position.set(1, 4, 3);
+    scene.add(keyLight);
+
+    const rimLight = new THREE.DirectionalLight(0xffd54f, 2.0); // golden rim from back-top
+    rimLight.position.set(-2, 3, -2);
+    scene.add(rimLight);
+
+    const candleLeft = new THREE.PointLight(0xff8f00, 2.5, 8);
+    candleLeft.position.set(-2, -0.2, 1.5);
+    scene.add(candleLeft);
+
+    const candleRight = new THREE.PointLight(0xff8f00, 2.5, 8);
+    candleRight.position.set(2, -0.2, 1.5);
+    scene.add(candleRight);
+
+    const loader = new GLTFLoader();
+    loader.load('/models/tripo-hamburgers_generated_by_ai.glb', (gltf) => {
+      const model = gltf.scene;
+
+      // Adjust materials for delicious gloss
+      model.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+          if (child.material) {
+            child.material.roughness = 0.45;
+            child.material.metalness = 0.05;
+          }
+        }
+      });
+
+      const box = new THREE.Box3().setFromObject(model);
+      const size = box.getSize(new THREE.Vector3());
+      const center = box.getCenter(new THREE.Vector3());
+      
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scale = 2.0 / maxDim;
+      model.scale.setScalar(scale);
+      
+      model.position.x = -center.x * scale;
+      model.position.y = -center.y * scale - 0.1;
+      model.position.z = -center.z * scale;
+
+      // Appetizing 3D angle
+      model.rotation.x = 0.15;
+      model.rotation.y = -0.35;
+
+      scene.add(model);
+      renderer.render(scene, camera);
+      window.__READY = true;
+    });
+
+    function renderLoop() {
+      requestAnimationFrame(renderLoop);
+      renderer.render(scene, camera);
+    }
+    renderLoop();
+  </script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Cairo', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #F7F4EF;
+    color: #1F1713;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+.font-serif-title {
+  font-family: 'Amiri', serif;
+}
+
+.font-latin-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Modern 2026 Studio Floating & Rotating Animations */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatDelayed {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatDelayed 6s ease-in-out infinite 1.5s;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 60s linear infinite;
+}
+
+/* شبكة الاستوديو المنقطة فائقة الرقي */
+.studio-dots {
+  background-image: radial-gradient(rgba(138, 150, 132, 0.2) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* 3D Credit Card Flip Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* ألواح الخشب الفاتح للستايل البوهيمي المشمس (Coastal Boho) */
+.wood-slats-light {
+  background-color: #F7F4EF;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #F7F4EF 0px,
+    #F7F4EF 24px,
+    #EAE3D9 24px,
+    #D2C4B7 26px,
+    #C5B6A8 27px,
+    #F7F4EF 28px
+  );
+}
+
+/* نقوش الخوص والخيزران الطبيعي (Rattan / Wicker Pattern) */
+.rattan-pattern {
+  background-color: #F7F4EF;
+  background-image: 
+    radial-gradient(#D2C4B7 15%, transparent 16%), 
+    radial-gradient(#C5B6A8 15%, transparent 16%);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+}
+
+/* أنيميشن تصاعد البخار الساخن */
+@keyframes steamRise {
+  0% {
+    transform: translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-40px) scaleX(1.3);
+    opacity: 0;
+  }
+}
+
+.animate-steam-1 {
+  animation: steamRise 3.5s infinite ease-out;
+}
+
+.animate-steam-2 {
+  animation: steamRise 3.5s infinite ease-out 1.2s;
+}
+
+.animate-steam-3 {
+  animation: steamRise 3.5s infinite ease-out 2.4s;
+}
+
+/* توهج دافئ بوهيمي */
+.glow-boho {
+  box-shadow: 0 10px 30px -5px rgba(208, 124, 96, 0.15);
+}
+
+.glow-boho-lg {
+  box-shadow: 0 20px 45px -10px rgba(208, 124, 96, 0.25);
+}
+
+/* ==============================================================
+   قواعد التباين العالي والوضوح الفائق للنصوص في الموقع بالكامل
+   (High Contrast & Readability Enhancement for Arabic Typography)
+   ============================================================== */
+
+/* تعزيز تباين جميع درجات النصوص الباهتة لتكون واضحة 100% */
+.text-\[\#6E5D53\],
+.text-\[\#6e5d53\] {
+  color: #382B23 !important; /* لون قهوة داكن غني وفائق الوضوح بدلاً من الرمادي الباهت */
+}
+
+/* ضمان وضوح الفوتر دائماً بنصوص فاتحة ومشرقة */
+footer,
+footer p,
+footer span,
+footer a,
+footer li,
+footer h4 {
+  color: #F7F4EF !important;
+}
+footer .text-\[\#E8DFD5\] {
+  color: #E8DFD5 !important;
+}
+footer a:hover {
+  color: #FBBF24 !important;
+}
+
+.text-\[\#55453B\],
+.text-\[\#55453b\] {
+  color: #241A14 !important;
+}
+
+.text-\[\#7D6B5D\],
+.text-\[\#7d6b5d\] {
+  color: #382B23 !important;
+}
+
+.text-\[\#3D312A\],
+.text-\[\#3d312a\] {
+  color: #1F1713 !important; /* أسود دافئ غني عالي التباين */
+}
+
+.text-\[\#8A9684\],
+.text-\[\#8a9684\] {
+  color: #26472A !important; /* أخضر زيتي غامق عالي التباين */
+}
+
+.text-\[\#D2C4B7\],
+.text-\[\#d2c4b7\] {
+  color: #3D2E24 !important;
+}
+
+.text-\[\#A09383\],
+.text-\[\#a09383\] {
+  color: #382B23 !important;
+}
+
+/* 2. ضمان وضوح الصناديق الفاتحة والأشرطة وبطاقات سر الصنعة */
+.bg-\[\#FAF5EE\],
+.bg-\[\#FAF7F2\],
+.bg-\[\#EFE9DF\],
+.bg-\[\#EFE8DD\] {
+  color: #1F1713;
+}
+
+/* 3. دعم الوضع الليلي الفخم (Dark Mode) بنسبة 100% دون أي نصوص باهتة */
+html.dark,
+.dark,
+.dark body,
+.dark .min-h-screen,
+.dark .bg-\[\#F7F4EF\],
+.dark .bg-\[\#F7F4EF\]\/95,
+.dark .bg-\[\#F7F4EF\]\/90,
+.dark .bg-\[\#F7F4EF\]\/80,
+.dark .bg-\[\#FAF6F0\],
+.dark .bg-\[\#FAF8F5\] {
+  background-color: #120E0C !important;
+  color: #F7F4EF !important;
+}
+
+/* بطاقات الكروت والصناديق في الوضع الليلي */
+.dark .bg-white,
+.dark .bg-white\/90,
+.dark .bg-white\/80,
+.dark .bg-white\/70,
+.dark .bg-white\/60 {
+  background-color: #1E1713 !important;
+  border-color: #382A20 !important;
+}
+
+.dark .bg-\[\#FAF5EE\],
+.dark .bg-\[\#FAF7F2\],
+.dark .bg-\[\#EFE9DF\],
+.dark .bg-\[\#EFE8DD\],
+.dark .bg-amber-50,
+.dark .bg-gray-50,
+.dark .bg-gray-100 {
+  background-color: #241A14 !important;
+  border-color: #382A20 !important;
+  color: #F7F4EF !important;
+}
+
+/* شريط التنقل العلوي والقوائم */
+.dark header {
+  background-color: rgba(18, 14, 12, 0.96) !important;
+  border-bottom-color: #382A20 !important;
+}
+
+.dark header nav {
+  background-color: rgba(30, 23, 19, 0.95) !important;
+  border-color: #382A20 !important;
+}
+
+/* فواصل وحدود الأقسام */
+.dark .border-\[\#D2C4B7\],
+.dark .border-\[\#D2C4B7\]\/60,
+.dark .border-\[\#D2C4B7\]\/50,
+.dark .border-\[\#D2C4B7\]\/40,
+.dark .border-\[\#D2C4B7\]\/30,
+.dark .border-\[\#E8DEC8\],
+.dark .border-\[\#E8DEC8\]\/80,
+.dark .border-\[\#DFD5C5\],
+.dark .border-\[\#EDE2D4\],
+.dark .border-\[\#E9DFD3\],
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: #382A20 !important;
+}
+
+/* العناوين الرئيسية في الوضع الليلي */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark .text-\[\#3D312A\],
+.dark .text-\[\#3d312a\],
+.dark .text-\[\#1F1713\],
+.dark .text-\[\#1f1713\],
+.dark .text-\[\#241A14\],
+.dark .text-\[\#261D16\],
+.dark .text-gray-900,
+.dark .text-gray-800 {
+  color: #FFFFFF !important;
+}
+
+/* النصوص الفرعية والوصف */
+.dark p,
+.dark .text-\[\#6E5D53\],
+.dark .text-\[\#6e5d53\],
+.dark .text-\[\#55453B\],
+.dark .text-\[\#55453b\],
+.dark .text-\[\#7D6B5D\],
+.dark .text-\[\#7d6b5d\],
+.dark .text-\[\#382B23\],
+.dark .text-gray-600,
+.dark .text-gray-500 {
+  color: #D6C9BD !important;
+}
+
+/* الشارات الخضراء والزيتية */
+.dark .text-\[\#8A9684\],
+.dark .text-\[\#8a9684\],
+.dark .text-\[\#26472A\],
+.dark .text-\[\#2D4F35\] {
+  color: #A3D4A8 !important;
+}
+
+.dark .bg-\[\#8A9684\]\/15,
+.dark .bg-\[\#8A9684\]\/10,
+.dark .bg-\[\#8A9684\]\/20 {
+  background-color: rgba(45, 79, 53, 0.4) !important;
+  border-color: rgba(163, 212, 168, 0.3) !important;
+  color: #A3D4A8 !important;
+}
+
+/* الأزرار الداكنة في الوضع الليلي */
+.dark .bg-\[\#3D312A\],
+.dark .bg-\[\#2B221D\] {
+  background-color: #2D2018 !important;
+  border-color: #4A382D !important;
+  color: #FFFFFF !important;
+}
+
+.dark .bg-\[\#D2C4B7\]\/30,
+.dark .bg-\[\#D2C4B7\]\/40 {
+  background-color: rgba(56, 42, 32, 0.6) !important;
+  border-color: #4A382D !important;
+  color: #FFFFFF !important;
+}
+
+/* 4. دعم اتجاه النصوص باللغة الإنجليزية (LTR) */
+html[dir="ltr"] body,
+html.lang-en body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, 'Playfair Display', sans-serif;
+}
+
+html[dir="ltr"] .font-serif-title {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+
