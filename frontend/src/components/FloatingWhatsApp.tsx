@@ -15,21 +15,21 @@ export default function FloatingWhatsApp() {
   return (
     <aside
       aria-label={isEn ? 'WhatsApp Customer Service' : 'خدمة عملاء واتساب'}
-      className="fixed bottom-6 right-6 z-40 select-none"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 select-none"
     >
       <a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative flex items-center justify-center w-13 h-13 sm:w-14 sm:h-14 rounded-full bg-[#1F1713] dark:bg-[#2A1E17] text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white/20 group cursor-pointer"
+        className="relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#1F1713] dark:bg-[#2A1E17] text-white shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 border-2 border-white/20 group cursor-pointer"
         title={isEn ? 'Chat with Loqma on WhatsApp (01065272373)' : 'تواصل مع مطبخ لقمة عبر واتساب (01065272373)'}
         aria-label="WhatsApp"
       >
         {/* أيقونة المحادثة المطابقة تماماً للفيديو والصورة */}
-        <MessageCircle className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:scale-105 transition-transform" />
+        <MessageCircle className="w-5 h-5 sm:w-7 sm:h-7 text-white group-hover:scale-105 transition-transform" />
 
         {/* الشارة الحمراء رقم 1 */}
-        <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-600 text-white text-[10px] font-black flex items-center justify-center shadow-md border-2 border-white animate-pulse">
+        <span className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-red-600 text-white text-[9px] sm:text-[10px] font-black flex items-center justify-center shadow-md border-2 border-white animate-pulse">
           1
         </span>
 

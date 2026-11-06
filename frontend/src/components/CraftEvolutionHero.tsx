@@ -317,18 +317,18 @@ export default function CraftEvolutionHero() {
 
           </div>
 
-          {/* العمود الثاني: الصور المتغيرة مع بعض جنباً إلى جنب */}
-          <div className="lg:col-span-7 flex flex-col sm:flex-row items-center justify-center gap-6 lg:gap-8 my-4 lg:my-0">
+          {/* العمود الثاني: الصور المتغيرة مع بعض جنباً إلى جنب على جميع الشاشات */}
+          <div className="lg:col-span-7 flex flex-row items-center justify-center gap-2.5 sm:gap-6 lg:gap-8 my-3 lg:my-0 w-full min-w-0">
             
             {/* 1. بطل العرض الطافي (المرحلة المتغيرة) */}
-            <div className="relative flex-1 flex flex-col items-center justify-center min-h-[300px] sm:min-h-[360px] md:min-h-[400px] w-full">
+            <div className="relative flex-1 min-w-0 flex flex-col items-center justify-center min-h-[190px] sm:min-h-[340px] md:min-h-[400px] w-full">
               <div 
-                className={`absolute w-64 sm:w-80 h-64 sm:h-80 rounded-full blur-3xl transition-opacity duration-700 pointer-events-none ${
+                className={`absolute w-44 sm:w-80 h-44 sm:h-80 rounded-full blur-3xl transition-opacity duration-700 pointer-events-none ${
                   isDark ? 'bg-amber-500/10' : 'bg-[#D2C4B7]/40'
                 }`}
               />
 
-              <div className="relative w-full max-w-[380px] h-[280px] sm:h-[340px] md:h-[380px] flex items-center justify-center">
+              <div className="relative w-full max-w-[200px] sm:max-w-[340px] md:max-w-[380px] h-[170px] sm:h-[300px] md:h-[380px] flex items-center justify-center">
                 {STAGES.map((s, idx) => {
                   const isActive = idx === currentIdx;
                   return (
@@ -343,7 +343,7 @@ export default function CraftEvolutionHero() {
                       <img
                         src={s.image}
                         alt={isEn ? s.enTitle : s.arTitle}
-                        className="max-h-[260px] sm:max-h-[320px] md:max-h-[360px] w-auto object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.45)]"
+                        className="max-h-[160px] sm:max-h-[280px] md:max-h-[360px] w-auto max-w-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.45)]"
                       />
                     </div>
                   );
@@ -351,7 +351,7 @@ export default function CraftEvolutionHero() {
               </div>
 
               {/* مؤشرات المراحل الخمس */}
-              <div className="flex items-center gap-2 mt-3 z-20">
+              <div className="flex items-center gap-1.5 sm:gap-2 mt-2 sm:mt-3 z-20">
                 {STAGES.map((s, idx) => {
                   const isActive = idx === currentIdx;
                   return (
@@ -359,10 +359,10 @@ export default function CraftEvolutionHero() {
                       key={s.id}
                       type="button"
                       onClick={() => setCurrentIdx(idx)}
-                      className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
+                      className={`h-1.5 sm:h-2 rounded-full transition-all duration-500 cursor-pointer ${
                         isActive 
-                          ? isDark ? 'w-8 bg-amber-400' : 'w-8 bg-[#3D312A]' 
-                          : isDark ? 'w-2 bg-white/20 hover:bg-white/40' : 'w-2 bg-[#D2C4B7] hover:bg-[#8A9684]'
+                          ? isDark ? 'w-6 sm:w-8 bg-amber-400' : 'w-6 sm:w-8 bg-[#3D312A]' 
+                          : isDark ? 'w-1.5 sm:w-2 bg-white/20 hover:bg-white/40' : 'w-1.5 sm:w-2 bg-[#D2C4B7] hover:bg-[#8A9684]'
                       }`}
                       title={isEn ? s.enTitle : s.arTitle}
                     />
@@ -372,28 +372,28 @@ export default function CraftEvolutionHero() {
             </div>
 
             {/* 2. كروت الأطباق الجانبية الأوتوماتيكية المتغيرة */}
-            <div className="shrink-0 flex flex-col items-center justify-center w-full max-w-[240px] sm:max-w-[250px]">
+            <div className="shrink-0 flex flex-col items-center justify-center w-[138px] xs:w-[155px] sm:w-[220px] md:w-[250px] min-w-0">
               <div 
-                className={`w-full rounded-3xl border overflow-hidden transition-all duration-500 group shadow-lg ${
+                className={`w-full rounded-2xl sm:rounded-3xl border overflow-hidden transition-all duration-500 group shadow-lg ${
                   isDark 
                     ? 'bg-white/[0.04] border-white/15' 
                     : 'bg-white border-[#D2C4B7]/80'
                 }`}
               >
-                <div className="p-3 pb-2 flex items-center justify-between border-b border-black/5 dark:border-white/10">
-                  <span className={`text-[10px] font-mono tracking-widest font-black ${
+                <div className="p-2 sm:p-3 pb-1.5 sm:pb-2 flex items-center justify-between border-b border-black/5 dark:border-white/10">
+                  <span className={`text-[9px] sm:text-[10px] font-mono tracking-widest font-black ${
                     isDark ? 'text-amber-400' : 'text-[#8A9684]'
                   }`}>
                     {activeSideDish.kicker}
                   </span>
-                  <span className={`text-xs font-bold font-serif-title ${
+                  <span className={`text-[11px] sm:text-xs font-bold font-serif-title truncate max-w-[70%] sm:max-w-none ${
                     isDark ? 'text-white' : 'text-[#1F1713]'
                   }`}>
                     {isEn ? activeSideDish.nameEn : activeSideDish.name}
                   </span>
                 </div>
 
-                <div className="relative h-56 sm:h-60 w-full overflow-hidden bg-[#D2C4B7]/20">
+                <div className="relative h-36 xs:h-40 sm:h-52 md:h-60 w-full overflow-hidden bg-[#D2C4B7]/20">
                   {SIDE_DISH_CARDS.map((dish, idx) => {
                     const isActive = idx === (currentIdx % SIDE_DISH_CARDS.length);
                     return (
@@ -412,7 +412,7 @@ export default function CraftEvolutionHero() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
                         
-                        <span className="absolute bottom-2.5 left-2 right-2 text-center text-[10px] text-white font-bold drop-shadow-md">
+                        <span className="absolute bottom-2 left-1.5 right-1.5 text-center text-[9px] sm:text-[10px] text-white font-bold drop-shadow-md truncate">
                           {isEn ? dish.badgeEn : dish.badge}
                         </span>
                       </div>
@@ -420,8 +420,8 @@ export default function CraftEvolutionHero() {
                   })}
                 </div>
 
-                <div className="p-3 text-center">
-                  <p className={`text-[10px] leading-tight font-medium ${
+                <div className="p-2 sm:p-3 text-center">
+                  <p className={`text-[9px] sm:text-[10px] leading-tight font-medium line-clamp-2 ${
                     isDark ? 'text-[#D2C4B7]' : 'text-[#55453B]'
                   }`}>
                     {isEn ? activeSideDish.footerNoteEn : activeSideDish.footerNote}
@@ -430,7 +430,7 @@ export default function CraftEvolutionHero() {
               </div>
 
               {/* مؤشرات الأطباق الخمسة */}
-              <div className="flex items-center gap-1.5 mt-3">
+              <div className="flex items-center gap-1 sm:gap-1.5 mt-2 sm:mt-3">
                 {SIDE_DISH_CARDS.map((dish, idx) => {
                   const isActive = idx === (currentIdx % SIDE_DISH_CARDS.length);
                   return (
@@ -440,7 +440,7 @@ export default function CraftEvolutionHero() {
                       onClick={() => setCurrentIdx(idx)}
                       className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                         isActive 
-                          ? isDark ? 'bg-amber-300 w-4' : 'bg-[#3D312A] w-4'
+                          ? isDark ? 'bg-amber-300 w-3.5 sm:w-4' : 'bg-[#3D312A] w-3.5 sm:w-4'
                           : isDark ? 'bg-white/20 hover:bg-white/40' : 'bg-[#D2C4B7] hover:bg-[#8A9684]'
                       }`}
                       title={isEn ? dish.nameEn : dish.name}

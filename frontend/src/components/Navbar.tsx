@@ -57,21 +57,21 @@ export default function Navbar() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16">
+        <div className="flex items-center justify-between h-14 sm:h-16 gap-2">
           
           {/* الشعار والهوية المودرن التحريرية الفاخرة (Editorial Luxury) */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-full bg-[#3D312A] dark:bg-amber-600 text-[#F7F4EF] flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300">
+          <Link to="/" className="flex items-center gap-1.5 sm:gap-2.5 group shrink-0 min-w-0">
+            <div className="w-8 h-8 rounded-full bg-[#3D312A] dark:bg-amber-600 text-[#F7F4EF] flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-300 shrink-0">
               <span className="font-serif text-sm font-bold">لـ</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <span 
-                className="text-xl sm:text-2xl font-black text-[#3D312A] dark:text-white tracking-wider font-serif"
+                className="text-lg sm:text-2xl font-black text-[#3D312A] dark:text-white tracking-wider font-serif"
                 style={{ fontFamily: 'Georgia, "Playfair Display", serif' }}
               >
                 LOQMA
               </span>
-              <span className="text-xs text-[#8A9684] dark:text-amber-300 font-bold tracking-widest border-r border-[#D2C4B7] dark:border-[#382A20] pr-2 mr-0.5">
+              <span className="text-[11px] sm:text-xs text-[#8A9684] dark:text-amber-300 font-bold tracking-widest border-r border-[#D2C4B7] dark:border-[#382A20] pr-1.5 sm:pr-2 mr-0.5 hidden xs:inline">
                 لـُقـْمـَة
               </span>
             </div>
@@ -98,17 +98,17 @@ export default function Navbar() {
           </nav>
 
           {/* أزرار الحساب والسلة واللغة والثيم والقائمة للموبايل */}
-          <div className="flex items-center gap-2 sm:gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* زر التبديل بين اللغتين (عربي / English) */}
             <button
               type="button"
               onClick={toggleLanguage}
-              className="px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-full border border-[#D2C4B7] dark:border-[#3D2E24] bg-white dark:bg-[#1E1713] text-[#3D312A] dark:text-amber-300 hover:bg-[#F7F4EF] dark:hover:bg-[#261D17] transition-all duration-300 shadow-xs flex items-center gap-1.5 cursor-pointer"
+              className="p-1.5 sm:px-3 sm:py-1.5 rounded-full border border-[#D2C4B7] dark:border-[#3D2E24] bg-white dark:bg-[#1E1713] text-[#3D312A] dark:text-amber-300 hover:bg-[#F7F4EF] dark:hover:bg-[#261D17] transition-all duration-300 shadow-xs flex items-center gap-1.5 cursor-pointer"
               title={language === 'ar' ? 'Switch to English' : 'التحويل للغة العربية'}
               aria-label="تبديل اللغة"
             >
               <Globe className="w-3.5 h-3.5 text-[#8A9684]" />
-              <span className="text-[11px] font-bold">
+              <span className="text-[11px] font-bold hidden sm:inline">
                 {language === 'ar' ? 'English' : 'عربي'}
               </span>
             </button>
@@ -137,7 +137,7 @@ export default function Navbar() {
             {/* زر تسجيل الدخول أو بروفايل الحساب */}
             <Link
               to={isLoggedIn ? '/profile' : '/login'}
-              className={`flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full font-bold text-xs transition-all duration-300 border ${
+              className={`flex items-center gap-1.5 p-1.5 sm:px-3.5 sm:py-2 rounded-full font-bold text-xs transition-all duration-300 border ${
                 isLoggedIn
                   ? 'bg-[#8A9684]/15 border-[#8A9684]/40 text-[#26472A] dark:text-[#A3D4A8] hover:bg-[#8A9684]/25'
                   : 'bg-white hover:bg-[#F7F4EF] border-[#D2C4B7] text-[#3D312A] shadow-xs hover:border-[#8A9684]'
@@ -153,7 +153,7 @@ export default function Navbar() {
               ) : (
                 <UserIcon className="w-3.5 h-3.5 text-[#8A9684]" />
               )}
-              <span className="text-[11px] sm:text-xs">
+              <span className="text-[11px] sm:text-xs hidden sm:inline">
                 {isLoggedIn ? (user?.name?.split(' ')[0] || t('navProfile')) : t('navLogin')}
               </span>
             </Link>
@@ -162,12 +162,12 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsCartOpen(true)}
-              className="relative flex items-center gap-2 bg-[#3D312A] hover:bg-[#2B221D] text-[#F7F4EF] px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full font-bold shadow-md shadow-[#3D312A]/20 transition-all duration-300 transform active:scale-95 cursor-pointer text-xs border border-white/10"
+              className="relative flex items-center gap-1.5 sm:gap-2 bg-[#3D312A] hover:bg-[#2B221D] text-[#F7F4EF] px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full font-bold shadow-md shadow-[#3D312A]/20 transition-all duration-300 transform active:scale-95 cursor-pointer text-xs border border-white/10"
             >
               <ShoppingBag className="w-3.5 h-3.5 text-[#F7F4EF]" />
               <span className="hidden sm:inline">{t('navCart')}</span>
               {totalItems > 0 && (
-                <span className="bg-[#8A9684] px-1.5 py-0.5 rounded-full text-[10px] font-sans font-black text-[#F7F4EF]">
+                <span className="bg-[#8A9684] px-1.5 py-0.5 rounded-full text-[10px] font-sans font-black text-[#F7F4EF] hidden md:inline">
                   {subtotal} {t('currency')}
                 </span>
               )}
@@ -182,7 +182,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-xl bg-white/60 border border-[#D2C4B7] text-[#3D312A] hover:bg-white transition-colors"
+              className="md:hidden p-1.5 sm:p-2 rounded-xl bg-white/60 dark:bg-[#1E1713] border border-[#D2C4B7] dark:border-[#382A20] text-[#3D312A] dark:text-white hover:bg-white transition-colors cursor-pointer"
               aria-label="القائمة"
             >
               {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}

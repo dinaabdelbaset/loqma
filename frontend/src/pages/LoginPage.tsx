@@ -1,5 +1,5 @@
 // Loqma Unified Modern Authentication System (2026)
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { 
   User, 
@@ -396,36 +396,36 @@ export default function LoginPage() {
         <div className="bg-white rounded-3xl sm:rounded-[32px] border border-[#D2C4B7] shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-12">
           
           {/* العمود الجانبي: هوية لقمة */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#3D312A] via-[#2F241E] to-[#1E1714] text-[#F7F4EF] p-6 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#3D312A] via-[#2F241E] to-[#1E1714] text-[#F7F4EF] p-5 sm:p-10 flex flex-col justify-between relative overflow-hidden">
             <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#8A9684]/20 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-amber-500/10 rounded-full blur-xl pointer-events-none" />
 
-            <div className="relative z-10 space-y-6">
+            <div className="relative z-10 space-y-4 sm:space-y-6">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-xl bg-[#8A9684] text-[#F7F4EF] flex items-center justify-center font-bold font-serif text-lg shadow-md">
+                <div className="w-10 h-10 rounded-xl bg-[#8A9684] text-[#F7F4EF] flex items-center justify-center font-bold font-serif text-lg shadow-md shrink-0">
                   لـ
                 </div>
                 <div>
-                  <h3 className="font-bold text-lg font-serif tracking-wider">سفرة لقمة</h3>
+                  <h3 className="font-bold text-base sm:text-lg font-serif tracking-wider">سفرة لقمة</h3>
                   <span className="text-[11px] text-[#D2C4B7] block">أكل بيتي مصري 100% بالسمن البلدي</span>
                 </div>
               </div>
 
               <div>
-                <div className="inline-flex items-center gap-1.5 bg-[#8A9684]/20 text-emerald-300 px-3 py-1 rounded-full text-[11px] font-bold mb-3 border border-[#8A9684]/30">
+                <div className="inline-flex items-center gap-1.5 bg-[#8A9684]/20 text-emerald-300 px-3 py-1 rounded-full text-[11px] font-bold mb-2.5 sm:mb-3 border border-[#8A9684]/30">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>5 طرق دخول عصرية بدون باسورد</span>
                 </div>
-                <h2 className="text-xl sm:text-2xl font-black text-white font-serif-title leading-snug">
+                <h2 className="text-lg sm:text-2xl font-black text-white font-serif-title leading-snug">
                   انضم لعائلة لقمة بأسهل طريقة تناسبك
                 </h2>
-                <p className="text-xs text-[#D2C4B7] mt-2 leading-relaxed">
+                <p className="text-xs text-[#D2C4B7] mt-1.5 sm:mt-2 leading-relaxed">
                   اختاري طريقتك المفضلة: بضغطة زر عبر واتساب، Google، بصمة الوجه، Apple ID، أو الرابط السحري بدون أي تعقيد.
                 </p>
               </div>
 
-              {/* بطاقات المميزات */}
-              <div className="space-y-3 pt-2">
+              {/* بطاقات المميزات - ظاهرة على التابلت والكمبيوتر ومخفية على شاشات الموبايل الصغيرة لسرعة الوصول للأزرار */}
+              <div className="hidden sm:block space-y-3 pt-2">
                 <div className="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
                   <Gift className="w-5 h-5 text-amber-400 shrink-0" />
                   <span className="text-xs text-[#F7F4EF]">خصومات خاصة ونقاط ولاء على كل أوردر</span>
@@ -441,18 +441,18 @@ export default function LoginPage() {
               </div>
             </div>
 
-            <div className="pt-6 relative z-10 text-[11px] text-[#D2C4B7]/80 flex items-center gap-1.5 border-t border-white/10 mt-6">
-              <ShieldCheck className="w-4 h-4 text-[#8A9684]" />
+            <div className="pt-4 sm:pt-6 relative z-10 text-[11px] text-[#D2C4B7]/80 flex items-center gap-1.5 border-t border-white/10 mt-4 sm:mt-6">
+              <ShieldCheck className="w-4 h-4 text-[#8A9684] shrink-0" />
               <span>بياناتك محمية ومشفرة بأعلى معايير الأمان</span>
             </div>
           </div>
 
           {/* العمود الرئيسي: نموذج خيارات الدخول العصرية الـ 5 */}
-          <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-center space-y-5">
+          <div className="lg:col-span-7 p-5 sm:p-10 flex flex-col justify-center space-y-4 sm:space-y-5">
             
             {/* عنوان الصفحة العصري والموحد */}
             <div className="border-b border-[#D2C4B7] pb-3">
-              <h3 className="text-xl sm:text-2xl font-black text-[#3D312A]">
+              <h3 className="text-lg sm:text-2xl font-black text-[#3D312A]">
                 تسجيل الدخول إلى لقمة
               </h3>
               <p className="text-xs text-[#6E5D53] mt-1">
