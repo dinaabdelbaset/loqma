@@ -97,47 +97,42 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* أزرار الحساب والسلة واللغة والثيم والقائمة للموبايل */}
+          {/* أزرار الموبايل: السلة + القائمة فقط | الشاشات الكبيرة: كل الأزرار */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-            {/* زر التبديل بين اللغتين (عربي / English) */}
+
+            {/* زر اللغة - مخفي على الموبايل (موجود في القائمة المنسدلة) */}
             <button
               type="button"
               onClick={toggleLanguage}
-              className="p-1.5 sm:px-3 sm:py-1.5 rounded-full border border-[#D2C4B7] dark:border-[#3D2E24] bg-white dark:bg-[#1E1713] text-[#3D312A] dark:text-amber-300 hover:bg-[#F7F4EF] dark:hover:bg-[#261D17] transition-all duration-300 shadow-xs flex items-center gap-1.5 cursor-pointer"
+              className="hidden md:flex p-1.5 lg:px-3 lg:py-1.5 rounded-full border border-[#D2C4B7] dark:border-[#3D2E24] bg-white dark:bg-[#1E1713] text-[#3D312A] dark:text-amber-300 hover:bg-[#F7F4EF] dark:hover:bg-[#261D17] transition-all duration-300 shadow-xs items-center gap-1.5 cursor-pointer"
               title={language === 'ar' ? 'Switch to English' : 'التحويل للغة العربية'}
               aria-label="تبديل اللغة"
             >
               <Globe className="w-3.5 h-3.5 text-[#8A9684]" />
-              <span className="text-[11px] font-bold hidden sm:inline">
+              <span className="text-[11px] font-bold hidden lg:inline">
                 {language === 'ar' ? 'English' : 'عربي'}
               </span>
             </button>
 
-            {/* زر التبديل بين الوضع الليلي والنهاري (Dark / Light Mode) */}
+            {/* زر الثيم - مخفي على الموبايل */}
             <button
               type="button"
               onClick={toggleTheme}
-              className="p-1.5 sm:px-3 sm:py-1.5 rounded-full border border-[#D2C4B7] dark:border-[#3D2E24] bg-white dark:bg-[#1E1713] text-[#3D312A] dark:text-amber-300 hover:bg-[#F7F4EF] dark:hover:bg-[#261D17] transition-all duration-300 shadow-xs flex items-center gap-1.5 cursor-pointer"
-              title={isDarkMode ? 'التبديل إلى الوضع النهاري (Light)' : 'التبديل إلى الوضع الليلي (Dark)'}
+              className="hidden md:flex p-1.5 lg:px-3 lg:py-1.5 rounded-full border border-[#D2C4B7] dark:border-[#3D2E24] bg-white dark:bg-[#1E1713] text-[#3D312A] dark:text-amber-300 hover:bg-[#F7F4EF] dark:hover:bg-[#261D17] transition-all duration-300 shadow-xs items-center gap-1.5 cursor-pointer"
+              title={isDarkMode ? 'الوضع النهاري' : 'الوضع الليلي'}
               aria-label="تبديل وضع الإضاءة"
             >
               {isDarkMode ? (
-                <>
-                  <Sun className="w-4 h-4 text-amber-400" />
-                  <span className="text-[11px] font-bold hidden sm:inline text-amber-300">{t('navDayMode')}</span>
-                </>
+                <Sun className="w-4 h-4 text-amber-400" />
               ) : (
-                <>
-                  <Moon className="w-4 h-4 text-[#3D312A]" />
-                  <span className="text-[11px] font-bold hidden sm:inline text-[#3D312A]">{t('navNightMode')}</span>
-                </>
+                <Moon className="w-4 h-4 text-[#3D312A]" />
               )}
             </button>
 
-            {/* زر تسجيل الدخول أو بروفايل الحساب */}
+            {/* زر تسجيل الدخول - مخفي على الموبايل */}
             <Link
               to={isLoggedIn ? '/profile' : '/login'}
-              className={`flex items-center gap-1.5 p-1.5 sm:px-3.5 sm:py-2 rounded-full font-bold text-xs transition-all duration-300 border ${
+              className={`hidden md:flex items-center gap-1.5 p-1.5 lg:px-3.5 lg:py-2 rounded-full font-bold text-xs transition-all duration-300 border ${
                 isLoggedIn
                   ? 'bg-[#8A9684]/15 border-[#8A9684]/40 text-[#26472A] dark:text-[#A3D4A8] hover:bg-[#8A9684]/25'
                   : 'bg-white hover:bg-[#F7F4EF] border-[#D2C4B7] text-[#3D312A] shadow-xs hover:border-[#8A9684]'
@@ -145,47 +140,43 @@ export default function Navbar() {
               title={isLoggedIn ? `بروفايلي (${user?.name})` : t('navLogin')}
             >
               {isLoggedIn && user?.avatar ? (
-                <img
-                  src={user.avatar}
-                  alt={user.name}
-                  className="w-4 h-4 rounded-full object-cover border border-[#8A9684]"
-                />
+                <img src={user.avatar} alt={user.name} className="w-4 h-4 rounded-full object-cover border border-[#8A9684]" />
               ) : (
                 <UserIcon className="w-3.5 h-3.5 text-[#8A9684]" />
               )}
-              <span className="text-[11px] sm:text-xs hidden sm:inline">
+              <span className="text-[11px] hidden lg:inline">
                 {isLoggedIn ? (user?.name?.split(' ')[0] || t('navProfile')) : t('navLogin')}
               </span>
             </Link>
 
-            {/* زر فتح سلة المشتريات المودرن */}
+            {/* زر السلة - ظاهر دايمًا */}
             <button
               type="button"
               onClick={() => setIsCartOpen(true)}
-              className="relative flex items-center gap-1.5 sm:gap-2 bg-[#3D312A] hover:bg-[#2B221D] text-[#F7F4EF] px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full font-bold shadow-md shadow-[#3D312A]/20 transition-all duration-300 transform active:scale-95 cursor-pointer text-xs border border-white/10"
+              className="relative flex items-center gap-1.5 bg-[#3D312A] hover:bg-[#2B221D] text-[#F7F4EF] px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full font-bold shadow-md shadow-[#3D312A]/20 transition-all duration-300 active:scale-95 cursor-pointer text-xs border border-white/10"
             >
-              <ShoppingBag className="w-3.5 h-3.5 text-[#F7F4EF]" />
+              <ShoppingBag className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">{t('navCart')}</span>
               {totalItems > 0 && (
-                <span className="bg-[#8A9684] px-1.5 py-0.5 rounded-full text-[10px] font-sans font-black text-[#F7F4EF] hidden md:inline">
+                <span className="hidden md:inline bg-[#8A9684] px-1.5 py-0.5 rounded-full text-[10px] font-black">
                   {subtotal} {t('currency')}
                 </span>
               )}
               {totalItems > 0 && (
-                <span className="absolute -top-1 -left-1 bg-red-600 text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center shadow-xs">
+                <span className="absolute -top-1 -left-1 bg-red-600 text-white text-[9px] font-black w-4 h-4 rounded-full flex items-center justify-center">
                   {totalItems}
                 </span>
               )}
             </button>
 
-            {/* زر القائمة للموبايل */}
+            {/* زر القائمة للموبايل فقط */}
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-1.5 sm:p-2 rounded-xl bg-white/60 dark:bg-[#1E1713] border border-[#D2C4B7] dark:border-[#382A20] text-[#3D312A] dark:text-white hover:bg-white transition-colors cursor-pointer"
+              className="md:hidden p-2 rounded-xl bg-white/60 dark:bg-[#1E1713] border border-[#D2C4B7] dark:border-[#382A20] text-[#3D312A] dark:text-white hover:bg-white transition-colors cursor-pointer"
               aria-label="القائمة"
             >
-              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
