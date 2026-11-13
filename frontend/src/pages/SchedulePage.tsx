@@ -63,18 +63,6 @@ export default function SchedulePage() {
               <span>{isEn ? 'Pure Cow Ghee & Fresh Greens' : 'سمن فلاحي ومكونات طازة'}</span>
             </span>
           </div>
-
-          {/* زر صانع جدول الأسبوع المخصص بالذكاء الاصطناعي */}
-          <div className="pt-4 flex justify-center">
-            <button
-              type="button"
-              onClick={() => window.dispatchEvent(new CustomEvent('loqma:open-meal-planner'))}
-              className="bg-[#2D4F35] hover:bg-[#233F2A] text-white px-6 py-3 rounded-2xl text-xs sm:text-sm font-black shadow-lg flex items-center gap-2 transition-all active:scale-95 cursor-pointer border border-emerald-400/30"
-            >
-              <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
-              <span>{isEn ? 'Build Your Custom AI Weekly Plan (15% Off)' : 'صمم جدول أسبوعك المخصص بالذكاء الاصطناعي (خصم 15%)'}</span>
-            </button>
-          </div>
         </div>
 
         {/* محتوى جدول الأسبوع التفاعلي الكامل */}

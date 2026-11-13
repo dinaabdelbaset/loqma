@@ -9,7 +9,6 @@ import FooterBoho from './components/FooterBoho';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import AIChefChatModal from './components/AIChefChatModal';
 import FeastCalculatorModal from './components/FeastCalculatorModal';
-import WeeklyMealPlannerModal from './components/WeeklyMealPlannerModal';
 
 // استيراد الصفحات المخصصة
 import HomePage from './pages/HomePage';
@@ -30,21 +29,17 @@ function AppContent() {
   const { dir } = useLanguage();
   const [isAIChatOpen, setIsAIChatOpen] = useState(false);
   const [isFeastOpen, setIsFeastOpen] = useState(false);
-  const [isMealPlanOpen, setIsMealPlanOpen] = useState(false);
 
   useEffect(() => {
     const handleOpenAIChat = () => setIsAIChatOpen(true);
     const handleOpenFeast = () => setIsFeastOpen(true);
-    const handleOpenMealPlan = () => setIsMealPlanOpen(true);
 
     window.addEventListener('loqma:open-ai-chat', handleOpenAIChat);
     window.addEventListener('loqma:open-feast-calculator', handleOpenFeast);
-    window.addEventListener('loqma:open-meal-planner', handleOpenMealPlan);
 
     return () => {
       window.removeEventListener('loqma:open-ai-chat', handleOpenAIChat);
       window.removeEventListener('loqma:open-feast-calculator', handleOpenFeast);
-      window.removeEventListener('loqma:open-meal-planner', handleOpenMealPlan);
     };
   }, []);
 
@@ -111,7 +106,6 @@ function AppContent() {
       {/* نوافذ الذكاء الاصطناعي والعزومات التفاعلية */}
       <AIChefChatModal isOpen={isAIChatOpen} onClose={() => setIsAIChatOpen(false)} />
       <FeastCalculatorModal isOpen={isFeastOpen} onClose={() => setIsFeastOpen(false)} />
-      <WeeklyMealPlannerModal isOpen={isMealPlanOpen} onClose={() => setIsMealPlanOpen(false)} />
 
       {/* تذييل الصفحة البوهيمي المشترك */}
       <FooterBoho />

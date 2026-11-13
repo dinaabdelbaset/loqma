@@ -308,17 +308,17 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto relative z-10">
             {/* كارت 1: شيف لقمة الذكي */}
-            <div className="bg-white/10 hover:bg-white/15 backdrop-blur-md rounded-2xl p-5 border border-white/15 flex flex-col justify-between transition-all group">
+            <div className="bg-white/10 hover:bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/15 flex flex-col justify-between transition-all group">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-[#2D4F35] flex items-center justify-center mb-3 shadow-md group-hover:scale-105 transition-transform">
-                  <Bot className="w-5 h-5 text-emerald-300" />
+                <div className="w-12 h-12 rounded-xl bg-[#2D4F35] flex items-center justify-center mb-3 shadow-md group-hover:scale-105 transition-transform">
+                  <Bot className="w-6 h-6 text-emerald-300" />
                 </div>
-                <h3 className="font-black text-base text-white mb-1">
+                <h3 className="font-black text-lg text-white mb-2">
                   {isEn ? 'AI Baladi Chef' : 'شيف لقمة الذكي (AI)'}
                 </h3>
-                <p className="text-xs text-[#E8DFD5] leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-[#E8DFD5] leading-relaxed mb-6">
                   {isEn
                     ? 'Chat in Egyptian Arabic: tell him your budget, party size, or allergies to get an instant meal.'
                     : 'اسأله بالعامية: معاك ميزانية محددة، حساسية ألبان/لاكتوز، أو عاوز أكلة معينة وهيظبطلك وجبتك فوراً.'
@@ -328,22 +328,22 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => window.dispatchEvent(new CustomEvent('loqma:open-ai-chat'))}
-                className="w-full bg-white hover:bg-[#FAF5EE] text-[#1F1713] py-2.5 rounded-xl font-black text-xs transition-all shadow-md active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
+                className="w-full bg-white hover:bg-[#FAF5EE] text-[#1F1713] py-3 rounded-xl font-black text-xs transition-all shadow-md active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
               >
                 <span>{isEn ? 'Chat with AI Chef 🤖' : 'تحدث مع الشيف 🤖'}</span>
               </button>
             </div>
 
             {/* كارت 2: حاسبة ومخطط العزومات */}
-            <div className="bg-white/10 hover:bg-white/15 backdrop-blur-md rounded-2xl p-5 border border-white/15 flex flex-col justify-between transition-all group">
+            <div className="bg-white/10 hover:bg-white/15 backdrop-blur-md rounded-2xl p-6 border border-white/15 flex flex-col justify-between transition-all group">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-amber-600/80 flex items-center justify-center mb-3 shadow-md group-hover:scale-105 transition-transform">
-                  <Users className="w-5 h-5 text-amber-200" />
+                <div className="w-12 h-12 rounded-xl bg-amber-600/80 flex items-center justify-center mb-3 shadow-md group-hover:scale-105 transition-transform">
+                  <Users className="w-6 h-6 text-amber-200" />
                 </div>
-                <h3 className="font-black text-base text-white mb-1">
+                <h3 className="font-black text-lg text-white mb-2">
                   {isEn ? 'Interactive Feast Calculator' : 'حاسبة ومخطط العزومات 👑'}
                 </h3>
-                <p className="text-xs text-[#E8DFD5] leading-relaxed mb-4">
+                <p className="text-xs sm:text-sm text-[#E8DFD5] leading-relaxed mb-6">
                   {isEn
                     ? 'Input your guest count (4 to 50+) and budget to get a balanced tray menu with 12-15% discount.'
                     : 'حدد عدد ضيوفك (10 أو 20 فرد) واحسب تشكيلة الصواني والمحاشي والتكلفة التقديرية بدقة.'
@@ -353,34 +353,9 @@ export default function HomePage() {
               <button
                 type="button"
                 onClick={() => window.dispatchEvent(new CustomEvent('loqma:open-feast-calculator'))}
-                className="w-full bg-amber-500 hover:bg-amber-400 text-[#1F1713] py-2.5 rounded-xl font-black text-xs transition-all shadow-md active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
+                className="w-full bg-amber-500 hover:bg-amber-400 text-[#1F1713] py-3 rounded-xl font-black text-xs transition-all shadow-md active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
               >
                 <span>{isEn ? 'Plan Your Feast 👑' : 'احسب عزومتك الآن 👑'}</span>
-              </button>
-            </div>
-
-            {/* كارت 3: صانع جدول الأسبوع بالـ AI */}
-            <div className="bg-white/10 hover:bg-white/15 backdrop-blur-md rounded-2xl p-5 border border-white/15 flex flex-col justify-between transition-all group">
-              <div>
-                <div className="w-10 h-10 rounded-xl bg-emerald-700/80 flex items-center justify-center mb-3 shadow-md group-hover:scale-105 transition-transform">
-                  <Calendar className="w-5 h-5 text-emerald-200" />
-                </div>
-                <h3 className="font-black text-base text-white mb-1">
-                  {isEn ? 'AI Weekly Meal Planner' : 'صانع جدول الأسبوع (AI) 📅'}
-                </h3>
-                <p className="text-xs text-[#E8DFD5] leading-relaxed mb-4">
-                  {isEn
-                    ? 'Generate a custom 6-day lunch plan for your family without daily cooking dilemmas (15% savings).'
-                    : 'صمم جدول 6 أيام غداء متوازن لعيلتك بدون حيرة يومية مع خصم 15% وتوصيل ساخن يومياً.'
-                  }
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => window.dispatchEvent(new CustomEvent('loqma:open-meal-planner'))}
-                className="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-xl font-black text-xs transition-all shadow-md active:scale-95 cursor-pointer flex items-center justify-center gap-1.5"
-              >
-                <span>{isEn ? 'Build Weekly Plan 📅' : 'صمم جدول أسبوعك 📅'}</span>
               </button>
             </div>
           </div>
