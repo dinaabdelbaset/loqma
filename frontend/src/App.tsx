@@ -24,6 +24,7 @@ import AboutPage from './pages/AboutPage';
 import ReviewsPage from './pages/ReviewsPage';
 import HealthyPage from './pages/HealthyPage';
 import ReadyToCookPage from './pages/ReadyToCookPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 function AppContent() {
   const { dir } = useLanguage();
@@ -79,6 +80,9 @@ function AppContent() {
 
           {/* صفحة تسجيل الدخول وإنشاء الحساب */}
           <Route path="/login" element={<LoginPage />} />
+
+          {/* صفحة إتمام الطلب وبوابات الدفع المستقلة */}
+          <Route path="/checkout" element={<CheckoutPage />} />
 
           {/* صفحة الملف الشخصي وحساب العميل وسجل الطلبات */}
           <Route path="/profile" element={<ProfilePage />} />
