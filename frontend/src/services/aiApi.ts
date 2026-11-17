@@ -29,9 +29,32 @@ export interface CrossSellItem {
   name: string;
   description: string;
   price: number;
+  discounted_price?: number;
+  categoryId?: string;
   image?: string;
   pairing_reason: string;
   pairing_reason_en?: string;
+}
+
+export interface FeastPlannerResponse {
+  status: string;
+  guests: number;
+  tier: string;
+  bread_loaves_included?: number;
+  summary: {
+    original_price: number;
+    discount_amount: number;
+    discount_percentage: number;
+    bundle_price: number;
+    price_per_guest: number;
+    mains_count: number;
+    sides_count: number;
+    soups_count: number;
+    salads_count: number;
+    total_savings?: number;
+  };
+  categorized_feast?: any;
+  all_dishes: any[];
 }
 
 /**
@@ -40,7 +63,7 @@ export interface CrossSellItem {
  */
 export async function askAIChef(
   message: string,
-  history?: { role: string; content: string }[],
+  _history?: { role: string; content: string }[],
   budget?: number,
   language: string = 'ar'
 ): Promise<AIChatResponse> {
@@ -155,9 +178,9 @@ export async function askAIChef(
 export async function planFeast(
   guests: number = 8,
   budgetTier: string = 'classic',
-  preference: string = 'all',
-  language: string = 'ar'
-): Promise<any> {
+  _preference: string = 'all',
+  _language: string = 'ar'
+): Promise<FeastPlannerResponse> {
   const allDishes = INITIAL_MENU_ITEMS;
   const mainCount = Math.max(1, Math.ceil(guests / 4));
   
@@ -202,7 +225,8 @@ export async function planFeast(
       mains_count: mains.length,
       sides_count: sides.length,
       soups_count: soups.length,
-      salads_count: 2
+      salads_count: 2,
+      total_savings: discountAmount
     },
     categorized_feast: {
       mains,
@@ -217,7 +241,7 @@ export async function planFeast(
 /**
  * 3. اقتراحات السلة الذكية التلقائية (Cross-Sell)
  */
-export async function getSmartCrossSell(cartDishIds: number[], language: string = 'ar'): Promise<CrossSellItem[]> {
+export async function getSmartCrossSell(cartDishIds: number[], _language: string = 'ar'): Promise<CrossSellItem[]> {
   const allDishes = INITIAL_MENU_ITEMS;
   return allDishes
     .filter(d => !cartDishIds.includes(d.id) && (d.categoryId === 'sides' || d.categoryId === 'salads'))
@@ -227,6 +251,8 @@ export async function getSmartCrossSell(cartDishIds: number[], language: string 
       name: d.name,
       description: d.description,
       price: d.price,
+      discounted_price: Math.round(d.price * 0.85),
+      categoryId: d.categoryId,
       image: d.image,
       pairing_reason: 'يكمل طعم وجبتك بالسمن البلدي الفلاحي 🍲',
       pairing_reason_en: 'Perfect baladi pairing for your meal 🍲'

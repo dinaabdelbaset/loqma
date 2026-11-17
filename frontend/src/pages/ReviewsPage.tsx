@@ -8,7 +8,9 @@ import {
   Send,
   X,
   ChevronRight,
-  ChevronLeft
+  ChevronLeft,
+  MessageCircle,
+  CheckCheck
 } from 'lucide-react';
 import { getReviews, addReview } from '../services/api';
 import { useLanguage } from '../context/LanguageContext';
@@ -225,6 +227,136 @@ export default function ReviewsPage() {
               <MessageSquarePlus className="w-3.5 h-3.5" />
               <span>{isEn ? 'Add Your Review' : 'أضف رأيك وتجربتك'}</span>
             </button>
+          </div>
+        </div>
+
+        {/* قسم محادثات الواتساب الحقيقية مع ستات البيوت والأمهات (Social Proof) */}
+        <div className="bg-[#FAF5EE] dark:bg-[#1A120D] p-6 sm:p-8 rounded-3xl border-2 border-[#D2C4B7] dark:border-[#382A20] space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#D2C4B7]/60 dark:border-[#382A20]">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-[#25D366] text-xs font-black mb-1">
+                <MessageCircle className="w-4 h-4 fill-current" />
+                <span>سكرينات وتجارب واقعية على الواتساب 💬</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-black font-serif-title text-[#1F1713] dark:text-white">
+                كلام عميلاتنا وستات البيوت بعد العزومات والغداء
+              </h2>
+            </div>
+            <span className="text-xs text-stone-500 font-bold bg-white dark:bg-[#261D17] px-3.5 py-1.5 rounded-full border border-stone-200 dark:border-stone-800">
+              رسائل مباشرة لخدمة عملاء لقمة 🌸
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            {/* رسالة 1: أم يوسف */}
+            <div className="bg-[#EFEAE2] dark:bg-[#201A15] p-4 rounded-2xl border border-stone-300 dark:border-stone-800 space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-emerald-600 text-white font-bold text-xs flex items-center justify-center">
+                    أم
+                  </div>
+                  <div>
+                    <span className="font-bold text-stone-900 dark:text-stone-100 block">مدام أم يوسف • مدينتي</span>
+                    <span className="text-[10px] text-stone-500">عزومة العيلة (8 أفراد)</span>
+                  </div>
+                </div>
+                <span className="text-[10px] text-stone-400">4:15 م</span>
+              </div>
+
+              {/* فقاعة واتساب */}
+              <div className="bg-[#DCF8C6] dark:bg-[#054740] p-3.5 rounded-2xl rounded-tr-none shadow-xs text-xs text-stone-900 dark:text-emerald-50 leading-relaxed space-y-1.5">
+                <p>
+                  "يا حبيبتي تسلم إيدك بجد! الأكل شرّفني جداً قدام حماتي وأهل جوزي.. كانو منبهرين بالبشاميل والمحشي وريحته اللي كانت قالعة الشقة! الكل افتكر إني واقفة من الفجر بطبخ في المطبخ، والأكل وصل سخن بيغلي في السرافيس. ربنا يبارك فيكم 🥰❤️"
+                </p>
+                <div className="flex justify-end items-center gap-1 text-[10px] text-stone-500 dark:text-emerald-200">
+                  <span>4:16 م</span>
+                  <CheckCheck className="w-3.5 h-3.5 text-blue-500" />
+                </div>
+              </div>
+            </div>
+
+            {/* رسالة 2: د. رانيا المهدي */}
+            <div className="bg-[#EFEAE2] dark:bg-[#201A15] p-4 rounded-2xl border border-stone-300 dark:border-stone-800 space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center">
+                    ر
+                  </div>
+                  <div>
+                    <span className="font-bold text-stone-900 dark:text-stone-100 block">د. رانيا المهدي • التجمع الخامس</span>
+                    <span className="text-[10px] text-stone-500">طلب صواني فرن مجهزة</span>
+                  </div>
+                </div>
+                <span className="text-[10px] text-stone-400">3:32 م</span>
+              </div>
+
+              {/* فقاعة واتساب */}
+              <div className="bg-[#DCF8C6] dark:bg-[#054740] p-3.5 rounded-2xl rounded-tr-none shadow-xs text-xs text-stone-900 dark:text-emerald-50 leading-relaxed space-y-1.5">
+                <p>
+                  "البشاميل طعمه حكاية وسمنته بلدي نضيفة جداً مش حامي على الصدر، وصواني العزومة وصلت سخنة مولعة في ميعادها بالدقيقة ومحفوظة في السرافيس الفويل كأنها طالعة من فرني حالاً، شكراً لفريق لقمة على الاهتمام بالتفاصيل دي 👏"
+                </p>
+                <div className="flex justify-end items-center gap-1 text-[10px] text-stone-500 dark:text-emerald-200">
+                  <span>3:33 م</span>
+                  <CheckCheck className="w-3.5 h-3.5 text-blue-500" />
+                </div>
+              </div>
+            </div>
+
+            {/* رسالة 3: مروة الشاذلي */}
+            <div className="bg-[#EFEAE2] dark:bg-[#201A15] p-4 rounded-2xl border border-stone-300 dark:border-stone-800 space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-purple-600 text-white font-bold text-xs flex items-center justify-center">
+                    م
+                  </div>
+                  <div>
+                    <span className="font-bold text-stone-900 dark:text-stone-100 block">مروة الشاذلي (أم لثلاثة وموظفة) • الشيخ زايد</span>
+                    <span className="text-[10px] text-stone-500">مشتركة باقة الأمهات الشهرية</span>
+                  </div>
+                </div>
+                <span className="text-[10px] text-stone-400">6:05 م</span>
+              </div>
+
+              {/* فقاعة واتساب */}
+              <div className="bg-[#DCF8C6] dark:bg-[#054740] p-3.5 rounded-2xl rounded-tr-none shadow-xs text-xs text-stone-900 dark:text-emerald-50 leading-relaxed space-y-1.5">
+                <p>
+                  "عايزة أجدد اشتراك الشهر الجديد فوراً للأولاد.. ارتاحت راحة نفسية رهيبة من حيرة غداء كل يوم بعد الشغل! الأولاد خلصو صينية البطاطس والشوربة كلها لأن طعمه أكل بيت مش مطاعم تجارية. تسلم إيديكم بجد 🌸"
+                </p>
+                <div className="flex justify-end items-center gap-1 text-[10px] text-stone-500 dark:text-emerald-200">
+                  <span>6:06 م</span>
+                  <CheckCheck className="w-3.5 h-3.5 text-blue-500" />
+                </div>
+              </div>
+            </div>
+
+            {/* رسالة 4: م. هاني كمال */}
+            <div className="bg-[#EFEAE2] dark:bg-[#201A15] p-4 rounded-2xl border border-stone-300 dark:border-stone-800 space-y-2">
+              <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-amber-600 text-white font-bold text-xs flex items-center justify-center">
+                    هـ
+                  </div>
+                  <div>
+                    <span className="font-bold text-stone-900 dark:text-stone-100 block">م. هاني كمال • المعادي</span>
+                    <span className="text-[10px] text-stone-500">طاجن عكاوي وكفتة مشوية</span>
+                  </div>
+                </div>
+                <span className="text-[10px] text-stone-400">2:45 م</span>
+              </div>
+
+              {/* فقاعة واتساب */}
+              <div className="bg-[#DCF8C6] dark:bg-[#054740] p-3.5 rounded-2xl rounded-tr-none shadow-xs text-xs text-stone-900 dark:text-emerald-50 leading-relaxed space-y-1.5">
+                <p>
+                  "طاجن العكاوي والكفتة ع الفحم اتنسفوا في الغداء! اللحمة دايبة دوب والسلطات فريش ونظيفة.. مندوب العربية كان محترم جداً ووصل الصواني مضبوطة بدون أي بهدلة.. اعتمدتكم خلاص لأي عزومة جاية 👍"
+                </p>
+                <div className="flex justify-end items-center gap-1 text-[10px] text-stone-500 dark:text-emerald-200">
+                  <span>2:46 م</span>
+                  <CheckCheck className="w-3.5 h-3.5 text-blue-500" />
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 

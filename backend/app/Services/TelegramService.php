@@ -63,6 +63,21 @@ class TelegramService
         $msg .= "👤 *اسم العميل:* {$order->customer_name}\n";
         $msg .= "📞 *تليفون العميل:* `{$order->customer_phone}`\n";
         $msg .= "📍 *العنوان:* {$order->customer_address}\n";
+        if (!empty($order->delivery_zone)) {
+            $msg .= "🏘️ *المنطقة والحي:* {$order->delivery_zone}\n";
+        }
+        if (!empty($order->delivery_date)) {
+            $msg .= "📅 *تاريخ التوصيل:* {$order->delivery_date}\n";
+        }
+        if (!empty($order->delivery_slot)) {
+            $msg .= "⏰ *دورة موعد الغداء:* {$order->delivery_slot}\n";
+        }
+        if (!empty($order->is_insulated_pack)) {
+            $msg .= "🍲 *تغليف خاص:* سرافيس عازلة للحرارة لحفظ السخونة 🔥\n";
+        }
+        if (!empty($order->dietary_notes)) {
+            $msg .= "🌿 *نَفَس الطبخة والدايت:* {$order->dietary_notes}\n";
+        }
         if (!empty($order->notes)) {
             $msg .= "📝 *ملاحظات:* {$order->notes}\n";
         }

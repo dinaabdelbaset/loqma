@@ -5,17 +5,17 @@ import {
   Plus, 
   Check, 
   Clock, 
-  ChefHat, 
   Snowflake,
   PackageCheck,
   ChevronRight,
-  ChevronLeft
+  ChevronLeft,
+  HeartHandshake
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 import type { MenuItem } from '../data/menuData';
 
-interface ReadyToCookDish {
+export interface ReadyToCookDish {
   id: number;
   name: string;
   nameEn: string;
@@ -35,191 +35,284 @@ interface ReadyToCookDish {
   cookingTimeEn: string;
   badge: string;
   badgeEn: string;
-  category: 'meat' | 'chicken' | 'baking' | 'mahshi';
+  category: 'oven_trays' | 'frozen_fry' | 'sauces_prep';
 }
 
-const READY_DISHES: ReadyToCookDish[] = [
+export const READY_DISHES: ReadyToCookDish[] = [
+  // 1. صواني على الفرن مباشرة
   {
     id: 9501,
-    name: 'صينية طاجن ورق عنب بالموزة البلدي (جاهزة للفرن)',
-    nameEn: 'Oven-Ready Baladi Shank & Grape Leaves Tray',
-    tagline: 'ورق عنب بناتي طازج ملفوف يدوياً مرصوص فوق شرائح موزة بلدي متبلة',
-    taglineEn: 'Tender hand-rolled grape leaves layered over spiced baladi veal shank steaks',
-    description: 'تصلك في صينية فرن محكمة الغلق مع برطمان مرقة البط المركزة الدسمة، فقط صبي المرقة وأدخليها الفرن 45 دقيقة.',
-    descriptionEn: 'Arrives sealed tight in a bake tray with a jar of aged duck broth. Just pour and bake for 45 minutes.',
-    instructions: 'صبي المرقة المرفقة وغطيها بفويل، ضعيها في فرن ساخن 190° لمدة 45 دقيقة ثم انزعي الفويل 5 دقائق لتتشمع.',
-    instructionsEn: 'Pour included broth, seal with foil, bake at 190°C for 45 mins, uncover 5 mins to caramelize.',
-    price: 260,
-    weight: '1.2 كجم تقريباً',
-    weightEn: 'Approx. 1.2 kg',
-    image: '/images/dishes/ready_mahshi_tray.jpg',
-    servings: '3 - 4 أفراد',
-    servingsEn: '3 - 4 Servings',
-    cookingTime: '45 دقيقة فرن',
-    cookingTimeEn: '45 mins Oven',
-    badge: 'الأكثر طلباً للعزومات 🔥',
-    badgeEn: 'Best Seller for Feasts 🔥',
-    category: 'mahshi'
+    name: 'صينية مكرونة بشاميل غنية باللحمة البلدي (جاهزة للفرن)',
+    nameEn: 'Oven-Ready Rich Baladi Béchamel Pasta Tray',
+    tagline: 'مكرونة قلم بصوص بشاميل كريمي بالسمن البلدي محشوة بلحمة مفرومة معصجة',
+    taglineEn: 'Rigatoni pasta with rich creamy baladi ghee béchamel and minced beef',
+    description: 'مجهزة بالكامل في صينية فويل سميكة ومدهونة بالبيض والقشطة البلدي على الوجه، فقط شغلي الفرن ودخليها مباشرة تخرج ذهبية وتبقبق.',
+    descriptionEn: 'Fully assembled in oven-ready foil tray topped with rustic cream. Straight to your hot oven.',
+    instructions: 'تدخل الفرن ساخن على درجة 200° لمدة 35 دقيقة ثم الشواية دقيقتين حتى تأخذ وش دهبي جراتان.',
+    instructionsEn: 'Bake in preheated oven at 200°C for 35 mins, then broil 2 mins for a golden gratin crust.',
+    price: 240,
+    weight: 'صينية عائلية (1.4 كجم)',
+    weightEn: 'Family Tray (1.4 kg)',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80',
+    servings: '4 - 5 أفراد',
+    servingsEn: '4 - 5 Servings',
+    cookingTime: '35 دقيقة فرن',
+    cookingTimeEn: '35 mins Oven',
+    badge: 'بشاميل بلدي أصيل 🧈',
+    badgeEn: 'Baladi Béchamel 🧈',
+    category: 'oven_trays'
   },
   {
     id: 9502,
-    name: 'كفتة حاتي بلدي متبلة على الشوي (1 كجم)',
-    nameEn: 'Marinated Baladi Hati Kofta Skewers (1 kg)',
-    tagline: 'لحم كندوز بلدي مفروم مع لية ضاني فريش وتتبيلة بصل وبهارات الحاتي السرية',
-    taglineEn: 'Minced baladi beef blended with lamb fat and secret Hati grill seasonings',
-    description: 'مصبعة ومجهزة على أسياخ خشبية، جاهزة للشوي على الفحم أو في صينية الفرن أو الجريل بدون أن تفك أو تكش.',
-    descriptionEn: 'Pre-skewered on wooden skewers. Never shrinks or breaks on charcoal, grill pan, or oven.',
-    instructions: 'اشويها على فحم هادئ أو في طاسة جريل ساخنة مدهونة بمسحة سمن بلدي لمدة 10 إلى 12 دقيقة مع التقليب.',
-    instructionsEn: 'Grill over medium coals or hot skillet brushed with baladi ghee for 10-12 minutes, turning gently.',
-    price: 340,
-    weight: '1 كجم (14-16 سيخ)',
-    weightEn: '1 kg (14-16 Skewers)',
-    image: '/images/dishes/ready_kofta.jpg',
+    name: 'صينية جلاش بلدي باللحمة المفرومة والجبنة الرومي',
+    nameEn: 'Layered Baladi Goulash with Meat & Roumi Cheese',
+    tagline: 'طبقات جلاش مورقة بالسمن البلدي الفلاحي بحشوة لحمة كندوز مفرومة ورومي قديم',
+    taglineEn: 'Flaky filo layers brushed with ghee, stuffed with minced beef & aged Roumi cheese',
+    description: 'تصلك مقطعة ومجهزة بالصينية مع خليط الحليب والبيض والبهارات الفلاحي، أدخليها الفرن فوراً لتورق وتقرمش.',
+    descriptionEn: 'Arrives pre-cut with seasoned milk-egg wash. Bakes flaky, puffy, and golden crisp.',
+    instructions: 'تخبز في الفرن على 180° لمدة 25-30 دقيقة حتى يصبح لونها دهبي كرسبي وتنتفخ الطبقات.',
+    instructionsEn: 'Bake at 180°C for 25-30 mins until crispy and puffed up.',
+    price: 190,
+    weight: 'صينية مستطيلة مقاس 28',
+    weightEn: 'Rectangular Tray 28cm',
+    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=80',
     servings: '4 - 5 أفراد',
     servingsEn: '4 - 5 Servings',
-    cookingTime: '12 دقيقة شوي',
-    cookingTimeEn: '12 mins Grill',
-    badge: 'تتبيلة حاتي سرية 🥩',
-    badgeEn: 'Secret Hati Recipe 🥩',
-    category: 'meat'
+    cookingTime: '25 دقيقة فرن',
+    cookingTimeEn: '25 mins Oven',
+    badge: 'مورقة 100% سمنة بلدي ✨',
+    badgeEn: 'Baladi Ghee Flaky ✨',
+    category: 'oven_trays'
   },
   {
     id: 9503,
-    name: 'حواوشي بلدي إسكندراني ني بالخلطة (4 أرغفة)',
-    nameEn: 'Raw Alexandrian Baladi Hawawshi Dough (4 Loaves)',
-    tagline: 'لحمة مفرومة بلدي متبلة بالفلفل الحار والبارد داخل عجين بلدي طازج',
-    taglineEn: 'Spiced minced baladi beef packed inside fresh artisan dough loaves',
-    description: 'جاهز للتسوية الفورية على طاسة الجريل أو في الفرن، مقرمش من بره ودايب ومستوي من جوه.',
-    descriptionEn: 'Ready for skillet or oven. Golden and crispy exterior with juicy melt-in-mouth filling.',
-    instructions: 'سوي الرغيف في طاسة تيفال مدهونة سمنة بلدي على نار متوسطة 6 دقائق لكل وجه مع تغطية الطاسة.',
-    instructionsEn: 'Cook on a covered non-stick pan brushed with ghee on medium heat for 6 mins per side.',
-    price: 180,
-    weight: '4 أرغفة جامبو',
-    weightEn: '4 Jumbo Loaves',
-    image: '/images/dishes/ready_hawawshi.jpg',
-    servings: '2 - 4 أفراد',
-    servingsEn: '2 - 4 Servings',
-    cookingTime: '12 دقيقة طاسة/فرن',
-    cookingTimeEn: '12 mins Pan/Oven',
-    badge: 'عجين بلدي فريش 🤤',
-    badgeEn: 'Fresh Baladi Dough 🤤',
-    category: 'meat'
+    name: 'صينية بطاطس بالفراخ البلدي المتبلة (جاهزة للفرن)',
+    nameEn: 'Oven-Ready Baladi Chicken & Potato Casserole',
+    tagline: 'شرائح بطاطس فريش مع أوراك/صدور فراخ بلدي متبلة بماء البصل والطماطم والشوربة',
+    taglineEn: 'Sliced fresh potatoes with marinated countryside chicken in tomato jus',
+    description: 'جاهزة ومتبلة بالصلصة والبهارات والسمن البلدي داخل صينية فويل محكمة، فقط انزعي الغطاء وأدخليها الفرن لتتسبك.',
+    descriptionEn: 'Fully prepped in thick foil pan with rich spices and ghee. Remove lid and bake to tender perfection.',
+    instructions: 'توضع في فرن 200° لمدة 45 دقيقة ثم تفتح الشواية 5 دقائق لتحمير الفراخ باللون الوردي المحمر.',
+    instructionsEn: 'Bake at 200°C for 45 mins, then broil 5 mins until skin is crisp and browned.',
+    price: 260,
+    weight: 'صينية كبيرة 1.5 كجم',
+    weightEn: 'Large 1.5 kg Tray',
+    image: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=500&q=80',
+    servings: '4 أفراد',
+    servingsEn: '4 Servings',
+    cookingTime: '45 دقيقة فرن',
+    cookingTimeEn: '45 mins Oven',
+    badge: 'ريحة زمان وخضار فريش 🥔',
+    badgeEn: 'Fresh Veggies 🥔',
+    category: 'oven_trays'
   },
   {
     id: 9504,
-    name: 'دجاجة بلدي فلاحي متبلة للشوي بماء البصل والأعشاب',
-    nameEn: 'Butterfly Marinated Baladi Chicken for Roasting',
-    tagline: 'دجاجة بلدي فريش 1.3 كجم مفتوحة فراشة ومتبلة 12 ساعة في الثلاجة',
-    taglineEn: '1.3 kg butterfly-cut countryside chicken marinated 12 hours in onion water and mountain herbs',
-    description: 'تتبيلة ريفية عميقة بماء البصل، طماطم فريش، مستردة، وزعتر جبلي. جاهزة للفرن بكيس حراري مرفق مجاناً.',
-    descriptionEn: 'Deep rustic marinade with fresh tomato, mustard, and wild thyme. Free thermal roasting bag included.',
-    instructions: 'ضعيها داخل الكيس الحراري المرفق مع ثقب صغير بالسكين، وأدخليها فرناً 200° لمدة 50 دقيقة لتحمير كهرماني.',
-    instructionsEn: 'Place inside provided oven bag, puncture top, bake at 200°C for 50 minutes until amber brown.',
-    price: 195,
-    weight: '1.3 كجم تقريباً',
-    weightEn: 'Approx. 1.3 kg',
-    image: '/images/dishes/ready_chicken.jpg',
-    servings: '3 أفراد',
-    servingsEn: '3 Servings',
-    cookingTime: '50 دقيقة بالفرن',
-    cookingTimeEn: '50 mins Oven',
-    badge: 'متبلة 12 ساعة 🍗',
-    badgeEn: '12-Hour Marinated 🍗',
-    category: 'chicken'
-  },
-  {
-    id: 9505,
-    name: 'صينية رقاق بلدي بالسمن الفلاحي واللحمة المفرومة',
-    nameEn: 'Layered Baladi Roqaq Tray with Minced Meat',
-    tagline: 'طبقات رقاق ناشف بلدي مسقية شوربة ومحشوة بلحم مفروم معصج بالسمن',
-    taglineEn: 'Flaky dry baladi roqaq soaked in rich bone broth with braised minced beef',
-    description: 'مجهزة كاملة ومدهونة بالسمن البلدي الصافي على الوجه، فقط أشعلي الفرن وضعي الصينية مباشرة.',
-    descriptionEn: 'Fully assembled with top brushed in pure cow ghee. Straight from your fridge to your hot oven.',
-    instructions: 'توضع في الرف الأوسط على حرارة 180° لمدة 25 دقيقة حتى تصبح ذهبية مقرمشة وطرية من القلب.',
-    instructionsEn: 'Bake on middle rack at 180°C for 25 minutes until golden crisp on top and soft inside.',
+    name: 'صينية رقاق بلدي بالسمن الفلاحي والشوربة المركزة',
+    nameEn: 'Baladi Roqaq Tray with Minced Meat & Duck Broth',
+    tagline: 'طبقات رقاق ناشف مسقية بمرقة البط البلدي ومحشوة لحمة مفرومة بلدي',
+    taglineEn: 'Dry baladi roqaq soaked in aged broth and layered with savory minced beef',
+    description: 'مجهزة ومورقة، وش الصينية مدهون سمن بلدي صافي لتأخذ وش مقمر مقرمش من بره وطري ومورق من جوه.',
+    descriptionEn: 'Prepped and brushed with pure ghee. Golden crunchy outside, melt-in-mouth soft inside.',
+    instructions: 'توضع في الفرن الأوسط على حرارة 180° لمدة 25 دقيقة حتى تحمر الأطراف والوجه.',
+    instructionsEn: 'Bake middle rack at 180°C for 25 mins until edges and top turn deep amber.',
     price: 210,
     weight: 'صينية مدورة مقاس 30',
-    weightEn: 'Round Tray Size 30',
-    image: '/images/dishes/ready_roqaq.jpg',
+    weightEn: 'Round Tray 30cm',
+    image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=500&q=80',
     servings: '4 - 6 أفراد',
     servingsEn: '4 - 6 Servings',
     cookingTime: '25 دقيقة فرن',
     cookingTimeEn: '25 mins Oven',
-    badge: 'مورقة سمن بلدي 🧈',
-    badgeEn: 'Baladi Ghee Flaky 🧈',
-    category: 'baking'
+    badge: 'طعم الأفراح والمناسبات 🥮',
+    badgeEn: 'Festive Classic 🥮',
+    category: 'oven_trays'
+  },
+
+  // 2. مفرزنات جاهزة على القلي والشوي
+  {
+    id: 9505,
+    name: 'سمبوسك مقرمشة بحشوات مشكلة (24 قطعة مفرزة)',
+    nameEn: 'Frozen Mixed Sambousek Pastries (24 pcs)',
+    tagline: '8 جبنة كيري ونعناع + 8 لحمة بلدي معصجة + 8 مكس خضار وجبن شيدر',
+    taglineEn: '8 Kiri & Mint + 8 Baladi Beef + 8 Cheddar Veggie mix',
+    description: 'عجينة خفيفة مقرمشة محكمة الغلق لا تمتص الزيت، جاهزة للنزول في الزيت الساخن أو الإيرفراير فوراً.',
+    descriptionEn: 'Light non-greasy dough sealed tight. Ready for deep fry or air fryer in minutes.',
+    instructions: 'تقلى مباشرة من الفريزر في زيت متوسط 3-4 دقائق، أو في الإيرفراير رشة زيت 8 دقائق.',
+    instructionsEn: 'Fry frozen in medium oil for 3-4 mins, or air fry with oil spray for 8 mins.',
+    price: 145,
+    weight: 'طبق 24 قطعة (750 جم)',
+    weightEn: '24 pcs Pack (750g)',
+    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=500&q=80',
+    servings: 'مقبلات عائلية',
+    servingsEn: 'Family Appetizer',
+    cookingTime: '4 دقائق قلي/إيرفراير',
+    cookingTimeEn: '4 mins Fry/Airfry',
+    badge: 'مقرمشة وما بتفكش 🥟',
+    badgeEn: 'Extra Crispy 🥟',
+    category: 'frozen_fry'
   },
   {
     id: 9506,
-    name: 'ممبار بلدي مسلوق وجاهز للتحمير السريع (1 كجم)',
-    nameEn: 'Boiled Baladi Mombar Ready for Sizzle Fry (1 kg)',
-    tagline: 'ممبار بقري بلدي متنضف فلة ومسلوق في الشوربة العطرية ومتبل تماماً',
-    taglineEn: 'Cleaned baladi beef mombar stuffed with seasoned herb rice, boiled in aromatics',
-    description: 'مسلوق ومحشي رز بخلطة زمان، محفوظ في أكياس مفرغة من الهواء. يحتاج فقط 5 دقائق تحمير في طاسة السمن.',
-    descriptionEn: 'Boiled and vacuum packed. Needs only 5 quick minutes of sizzling in hot ghee to turn crispy.',
-    instructions: 'سخني طاسة السمن البلدي وانزلي بالممبار حتى يأخذ اللون الذهبي المحمر المقرمش ورشي كزبرة وملح وفلفل.',
-    instructionsEn: 'Heat ghee in a deep skillet, fry till crispy reddish-gold, and sprinkle with coriander and pepper.',
-    price: 280,
-    weight: '1 كجم مسلوق جاهز',
-    weightEn: '1 kg Pre-boiled',
-    image: '/images/dishes/ready_mombar.jpg',
-    servings: '4 أفراد',
-    servingsEn: '4 Servings',
+    name: 'كبيبة بلدي شامية محشية لحمة ومكسرات (12 حبة)',
+    nameEn: 'Baladi Kibbeh Stuffed with Beef & Pine Nuts (12 pcs)',
+    tagline: 'برغل ناعم بلحم بلدي مفروم محشوة لحمة معصجة وصنوبر ومكسرات وبهار حلو',
+    taglineEn: 'Bulgur dough filled with seasoned beef mince, roasted pine nuts, and allspice',
+    description: 'مصنوعة يدوياً بحرفية، مجمدة ومفصولة بورق زبدة لضمان القرمشة الخارجية والحشوة الدايبة.',
+    descriptionEn: 'Artisan handcrafted kibbeh separated by parchment. Crunchy crust with juicy center.',
+    instructions: 'تقلى في زيت غزير ساخن 5 دقائق على نار متوسطة بدون تقليب في أول دقيقتين.',
+    instructionsEn: 'Deep fry in hot oil 5 mins over medium flame without stirring first 2 mins.',
+    price: 165,
+    weight: 'طبق 12 حبة جامبو',
+    weightEn: 'Pack of 12 Jumbo',
+    image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=500&q=80',
+    servings: '3 - 4 أفراد',
+    servingsEn: '3 - 4 Servings',
     cookingTime: '5 دقائق تحمير',
-    cookingTimeEn: '5 mins Sizzle Fry',
-    badge: 'مسلوق وجاهز ع القلي ♨️',
-    badgeEn: 'Ready to Fry ♨️',
-    category: 'mahshi'
+    cookingTimeEn: '5 mins Fry',
+    badge: 'محشوة مكسرات بلدي 🌰',
+    badgeEn: 'Nut Stuffed 🌰',
+    category: 'frozen_fry'
   },
   {
     id: 9507,
-    name: 'طاجن عكاوي بلدي متبل بالبصل القاورما المكرمل',
-    nameEn: 'Baladi Oxtail Clay Tajine with Caramelized Baby Onions',
-    tagline: 'قطع عكاوي بقري بلدي دسمة متبلة بجوزة الطيب مع بصل قاورما صغير',
-    taglineEn: 'Rich baladi oxtail seasoned with nutmeg and baby pearl onions',
-    description: 'داخل طاجن فخار مسلفن، متبلة بصوص بني دافئ جاهزة لدخول الفرن لتستوي وتذوب كالملبن.',
-    descriptionEn: 'Sealed inside a genuine clay pot with brown jus. Ready to slow bake until gelatinously tender.',
-    instructions: 'أدخلي الطاجن مسلفناً إلى الفرن على 180° لمدة ساعتين حتى تدوب اللحمة تماماً وتتكرمل.',
-    instructionsEn: 'Bake foil-sealed at 180°C for 2 hours until the oxtail meat melts like butter.',
-    price: 360,
-    weight: '1 كجم بالعظم والصوص',
-    weightEn: '1 kg with bone & sauce',
-    image: '/images/dishes/ready_akkawi.jpg',
-    servings: '2 - 3 أفراد',
-    servingsEn: '2 - 3 Servings',
-    cookingTime: 'تسوية بطيئة ساعتين',
-    cookingTimeEn: '2 hrs Slow Bake',
-    badge: 'عكاوي دايبة دوب 🍲',
-    badgeEn: 'Melt-in-Mouth Oxtail 🍲',
-    category: 'meat'
+    name: 'كفتة حاتي بلدي متبلة ومصبعة على الشوي (1 كجم)',
+    nameEn: 'Marinated Baladi Hati Kofta Skewers (1 kg)',
+    tagline: 'لحم كندوز بلدي مفروم وشين مع لية ضاني فريش وبهارات الحاتي السرية',
+    taglineEn: 'Minced baladi beef blended with lamb fat and secret Hati seasonings',
+    description: 'مصبعة على أسياخ خشبية ومجهزة، لا تكش ولا تفك على الشواية أو في صينية الفرن أو الجريل.',
+    descriptionEn: 'Pre-shaped on skewers. Never breaks or shrinks on charcoal or oven pan.',
+    instructions: 'اشويها على فحم هادئ أو في طاسة جريل ساخنة مدهونة بمسحة سمن بلدي لمدة 10 دقائق.',
+    instructionsEn: 'Grill over coals or hot skillet brushed with baladi ghee for 10 mins.',
+    price: 340,
+    weight: '1 كجم (14-16 سيخ)',
+    weightEn: '1 kg (14-16 Skewers)',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=500&q=80',
+    servings: '4 - 5 أفراد',
+    servingsEn: '4 - 5 Servings',
+    cookingTime: '10 دقائق شوي',
+    cookingTimeEn: '10 mins Grill',
+    badge: 'تتبيلة حاتي سرية 🥩',
+    badgeEn: 'Secret Hati 🥩',
+    category: 'frozen_fry'
   },
   {
     id: 9508,
-    name: 'سمبوسك مقرمشة مكس جبن بلدي ولحم مفروم (20 قطعة)',
-    nameEn: 'Crispy Baladi Cheese & Minced Meat Sambousek (20 pcs)',
-    tagline: '10 قطع جبنة براميلي وزعتر ونعناع + 10 قطع لحمة مفرومة معصجة بلدي',
-    taglineEn: '10 pcs Baramili cheese with mint & thyme + 10 pcs baladi spiced ground beef',
-    description: 'ملفوفة بعجينة خفيفة ومحكمة الغلق لا تفتح في الزيت، جاهزة للقلي السريع أو الإيرفراير.',
-    descriptionEn: 'Rolled in pastry and sealed tight. Ready for air frying or golden deep fry.',
-    instructions: 'تقلى في زيت متوسط الحرارة 3 دقائق أو في القلاية الهوائية (Air Fryer) مع رشة زيت خفيفة 7 دقائق.',
-    instructionsEn: 'Fry 3 mins in medium oil or air fry at 180°C for 7 mins with a light oil spray.',
-    price: 130,
-    weight: 'طبق 20 قطعة',
-    weightEn: 'Pack of 20 Pieces',
-    image: '/images/dishes/ready_sambousak.jpg',
-    servings: 'مقبلات عائلية',
-    servingsEn: 'Family Appetizer',
-    cookingTime: '3-5 دقائق قلي/إيرفراير',
-    cookingTimeEn: '3-5 mins Fry/Airfry',
-    badge: 'مقرمشة ولذيذة 🥟',
-    badgeEn: 'Golden Crispy 🥟',
-    category: 'baking'
+    name: 'بانيه صدور دجاج فريش واستربس كريسبي متبل ومفرز (1 كجم)',
+    nameEn: 'Crispy Breaded Chicken Breast & Strips (1 kg)',
+    tagline: 'صدور فراخ بلدي فريش متبلة بماء البصل والليمون ومغلفة بخلطة بقسماط كرسبي مقرمشة',
+    taglineEn: 'Fresh baladi chicken breasts breaded in extra crunchy seasoned crumbs',
+    description: 'مجهزة طبقات ومفروزة، تخرج من الفريزر على القلي أو الإيرفراير مباشرة ذهبية ومقرمشة وطرية من الداخل.',
+    descriptionEn: 'Layered and pre-breaded. Fries to golden perfection straight from freezer.',
+    instructions: 'تقلى في زيت ساخن 4-5 دقائق أو في القلاية الهوائية رشة زيت على 190° لمدة 12 دقيقة.',
+    instructionsEn: 'Fry 4-5 mins in hot oil or air fry at 190°C for 12 mins.',
+    price: 240,
+    weight: '1 كجم صافي',
+    weightEn: '1 kg Net',
+    image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=500&q=80',
+    servings: '4 - 6 أفراد',
+    servingsEn: '4 - 6 Servings',
+    cookingTime: '5 دقائق قلي',
+    cookingTimeEn: '5 mins Fry',
+    badge: 'فراخ بلدي كريسبي 🍗',
+    badgeEn: 'Crispy Baladi 🍗',
+    category: 'frozen_fry'
+  },
+  {
+    id: 9509,
+    name: 'ورق عنب بناتي ملفوف ومتبل جاهز بمرقة البط (1 كجم)',
+    nameEn: 'Hand-Rolled Grape Leaves with Baladi Broth Jar',
+    tagline: 'ورق عنب طازج ملفوف صوابع صغيرة بخلطة الأرز المصري والخضرة الفريش مع برطمان مرقة البط',
+    taglineEn: 'Tender hand-rolled grape leaves with rice & fresh herbs + aged duck broth jar',
+    description: 'مرصوص وجاهز في حلة أو صينية، يصلك مع برطمان مرقة البط المركزة لصبها والتسوية فوراً.',
+    descriptionEn: 'Tightly rolled in cooking tray with rich duck broth jar. Pour and simmer.',
+    instructions: 'صبي المرقة المرفقة وضعي طبقاً ثقيلاً فوق المحشي، واتركيه يغلي ثم هدي النار 45 دقيقة.',
+    instructionsEn: 'Pour broth, weigh down with heatproof plate, bring to boil then simmer on low 45 mins.',
+    price: 220,
+    weight: '1 كجم محشي + برطمان شوربة',
+    weightEn: '1 kg Mahshi + Broth Jar',
+    image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=500&q=80',
+    servings: '3 - 4 أفراد',
+    servingsEn: '3 - 4 Servings',
+    cookingTime: '45 دقيقة تسوية',
+    cookingTimeEn: '45 mins Simmer',
+    badge: 'ملفوف صوابع ع المسطرة 🌿',
+    badgeEn: 'Hand-Rolled 🌿',
+    category: 'frozen_fry'
+  },
+
+  // 3. صلصات وتجهيزات ست البيت
+  {
+    id: 9510,
+    name: 'تسبيكة خضار بلدي متسبكة بالطماطم الفريش والسمن البلدي (برطمان 1 كجم)',
+    nameEn: 'Baladi Tomato Stew Base in Pure Ghee (1 kg Jar)',
+    tagline: 'طماطم بلدي حمراء متسبكة على نار هادية مع بصل وثوم وسمنة بلدي وبهارات المطبخ الأصيل',
+    taglineEn: 'Slow-simmered baladi tomato reduction with onion, garlic, and pure cow ghee',
+    description: 'جاهزة لإسقاط البامية أو البسلة أو اللوبيا أو الفاصوليا فوراً وتوفير ساعة كاملة من وقفة المطبخ.',
+    descriptionEn: 'The ultimate kitchen shortcut. Just add okra, peas, or beans and simmer 15 mins.',
+    instructions: 'سخني 4 ملاعق من التسبيكة في الحلة، أضيفي الخضار والشوربة واتركيها تتسبك 15 دقيقة.',
+    instructionsEn: 'Heat 4 spoons in your pot, add fresh vegetables and broth, simmer 15 mins.',
+    price: 95,
+    weight: 'برطمان زجاجي 1 كجم',
+    weightEn: '1 kg Glass Jar',
+    image: 'https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?w=500&q=80',
+    servings: 'تكفي 3 إلى 4 طبخات',
+    servingsEn: 'Makes 3-4 Meals',
+    cookingTime: 'جاهزة للاستخدام الفوري',
+    cookingTimeEn: 'Instant Use',
+    badge: 'بدون مواد حافظة 🍅',
+    badgeEn: 'Zero Preservatives 🍅',
+    category: 'sauces_prep'
+  },
+  {
+    id: 9511,
+    name: 'بصل مفروم ناعم متبل بالسمن البلدي والبهارات (عبوة 1 كجم تفريز)',
+    nameEn: 'Seasoned Minced Onions with Baladi Ghee (1 kg Freezer Pack)',
+    tagline: 'بصل بلدي فريش مفروم ومشوّح تشويحة خفيفة بالسمن البلدي والفلفل الأسود ومفرز مكعبات',
+    taglineEn: 'Minced baladi onions lightly sautéed in ghee and black pepper, portioned in cubes',
+    description: 'وفري دموع تقطيع البصل ووقت الطبخ، طلعي المكعب وعلى الحلة مباشرة لأي صينية أو شوربة أو خضار.',
+    descriptionEn: 'Save tears and prep time. Pop frozen onion cubes straight into your cooking pot.',
+    instructions: 'يوضع المكعب مجمداً في الحلة أو الطاسة ويسخن 60 ثانية ويبدأ الطبخ.',
+    instructionsEn: 'Place cube frozen into pot or pan, heat 60 seconds and start cooking.',
+    price: 85,
+    weight: 'عبوة 1 كجم (مكعبات مقسمة)',
+    weightEn: '1 kg Pack (Portioned)',
+    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=500&q=80',
+    servings: 'تكفي شهر كامل',
+    servingsEn: 'Lasts 1 Month',
+    cookingTime: 'فوري على الحلة',
+    cookingTimeEn: 'Instant',
+    badge: 'وداعاً لدموع البصل 🧅',
+    badgeEn: 'No Onion Tears 🧅',
+    category: 'sauces_prep'
+  },
+  {
+    id: 9512,
+    name: 'شوربة لحمة/فراخ بلدي مركزة طبيعية (زجاجة 1 لتر مفرزة)',
+    nameEn: 'Concentrated Natural Baladi Bone Broth (1 Liter)',
+    tagline: 'مرقة عظام ولحوم بلدي مسلوقة 8 ساعات مع مستكة وحبهان وورق لورا بدون أي مكعبات صناعية',
+    taglineEn: '8-hour slow-cooked baladi bone broth with mastic, cardamom, zero artificial bouillon',
+    description: 'شوربة غنية بالجيلاتين والفوائد الطبيعية، مثالية لتسوية المحاشي، الملوخية، لسان العصفور، والصواني.',
+    descriptionEn: 'Rich in natural collagen. Perfect base for molokhia, mahshi, and rice.',
+    instructions: 'تذوب الزجاجة وتغلى وتستخدم كأساس فوري لأي شوربة أو خضار أو لتسوية الأرز البسمتي.',
+    instructionsEn: 'Thaw and boil. Use as rich base for orzo soup, rice, and hearty stews.',
+    price: 75,
+    weight: 'زجاجة محكمة 1 لتر',
+    weightEn: '1 Liter Bottle',
+    image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&q=80',
+    servings: 'تكفي 5 أطباق شوربة',
+    servingsEn: 'Serves 5 Bowls',
+    cookingTime: 'تغلى في 3 دقائق',
+    cookingTimeEn: 'Boil in 3 mins',
+    badge: 'مرقة طبيعية 100% 🍲',
+    badgeEn: '100% Natural Broth 🍲',
+    category: 'sauces_prep'
   }
 ];
 
 export default function ReadyToCookPage() {
   const { addToCart } = useCart();
-  const [activeTab, setActiveTab] = useState<'all' | 'meat' | 'chicken' | 'baking' | 'mahshi'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'oven_trays' | 'frozen_fry' | 'sauces_prep'>('all');
   const [justAdded, setJustAdded] = useState<{ [id: number]: boolean }>({});
   const { language, dir, t } = useLanguage();
   const isEn = language === 'en';
@@ -248,78 +341,72 @@ export default function ReadyToCookPage() {
     : READY_DISHES.filter((d) => d.category === activeTab);
 
   const tabs = [
-    { id: 'all', label: isEn ? 'All Ready-to-Bake (8)' : 'كافة الأصناف الجاهزة (8)' },
-    { id: 'meat', label: isEn ? 'Meats & Hawawshi' : 'لحوم وحواوشي (Meat)' },
-    { id: 'chicken', label: isEn ? 'Poultry & Grills' : 'دواجن ومشويات (Chicken)' },
-    { id: 'mahshi', label: isEn ? 'Mahshi & Mombar' : 'محاشي وممبار (Mahshi)' },
-    { id: 'baking', label: isEn ? 'Roqaq & Pastries' : 'صواني ورقاق ومخبوزات (Baking)' }
+    { id: 'all', label: isEn ? 'All Ready-to-Cook (12)' : 'كافة المفرزنات والتجهيزات (12)' },
+    { id: 'oven_trays', label: isEn ? 'Oven-Ready Trays' : '🥘 صواني على الفرن مباشرة' },
+    { id: 'frozen_fry', label: isEn ? 'Ready to Fry & Grill' : '🥟 مفرزنات على القلي والشوي' },
+    { id: 'sauces_prep', label: isEn ? 'Homemade Sauces & Prep' : '🍅 صلصات وتجهيزات ست البيت' },
   ];
 
   return (
     <div className="bg-[#F7F4EF] dark:bg-[#120E0C] text-[#1F1713] dark:text-[#F7F4EF] min-h-screen py-8 sm:py-14 transition-colors" dir={dir}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         
-        {/* شريط المسار (Breadcrumbs) */}
-        <nav className="flex items-center gap-2 text-xs font-semibold text-[#55453B] dark:text-[#D6C9BD] border-b border-[#D2C4B7]/60 dark:border-[#382A20] pb-3">
-          <Link to="/" className="hover:text-amber-600 transition-colors">{t('navHome')}</Link>
-          <BreadcrumbArrow className="w-3.5 h-3.5 text-[#8A9684]" />
-          <span className="font-bold text-[#26472A] dark:text-[#A3D4A8]">{t('navReadyToCook')}</span>
+        {/* مسار الصفحة (Breadcrumb) */}
+        <nav className="flex items-center gap-2 text-xs font-bold text-[#55453B] dark:text-[#D6C9BD]">
+          <Link to="/" className="hover:text-[#8A9684] transition-colors">{t('home')}</Link>
+          <BreadcrumbArrow className="w-3.5 h-3.5 opacity-60" />
+          <span className="text-[#1F1713] dark:text-white font-black">
+            {isEn ? 'Home Cooking Prep & Freezer Pantry' : 'مفرزنات وتجهيزات ست البيت (جاهز ع التسوية)'}
+          </span>
         </nav>
 
-        {/* ترويسة القسم */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 bg-[#8A9684]/15 text-[#26472A] dark:text-[#A3D4A8] px-4 py-1.5 rounded-full text-xs font-black border border-[#8A9684]/30 shadow-xs">
-            <Flame className="w-4 h-4 text-amber-500" />
-            <span>{isEn ? 'Loqma Ready-to-Bake • Fresh from Prep Kitchen' : 'لقمة جاهز ع التسوية • Ready to Cook & Bake'}</span>
-          </div>
+        {/* ترويسة الصفحة مع البنر البوهيمي المخصص */}
+        <div className="relative rounded-3xl sm:rounded-[40px] overflow-hidden bg-gradient-to-br from-[#2D241E] via-[#1E1713] to-[#120E0C] text-white p-6 sm:p-12 border-2 border-[#D2C4B7]/20 shadow-2xl">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#8A9684]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative z-10 max-w-2xl space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold border border-amber-500/30">
+              <Snowflake className="w-4 h-4 text-amber-300" />
+              <span>{isEn ? 'Handmade Meal Prep & Freezer Trays' : 'تفريزات ومجهّزات ست البيت والأمهات العاملات ❄️'}</span>
+            </div>
+            
+            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black font-serif-title leading-tight">
+              {isEn ? 'Oven-Ready Dishes & Homemade Prep' : 'مفرزنات وصواني على الفرن والقلي مباشرة'}
+            </h1>
+            
+            <p className="text-xs sm:text-base text-[#D6C9BD] leading-relaxed">
+              {isEn 
+                ? 'Save hours in the kitchen with hand-prepped family trays, seasoned kofta, crispy sambousek, and concentrated natural bone broths. Straight from our kitchen to your oven or freezer.'
+                : 'ريحي نفسك من وقفة المطبخ وتجهيزات العزومات! صواني مجهزة ومفرزنات متبلة بالسمن البلدي تدخل فرنك أو طاستك تطلع طازة بتفور وريحتها قالعة العمارة.'}
+            </p>
 
-          <h1 className="text-3xl sm:text-5xl font-black text-[#1F1713] dark:text-white font-serif-title leading-tight">
-            {isEn ? 'Prepped & Marinated for Direct Baking at Home' : 'متبل ومجهز لفرنك.. تسوية في بيتك وسخونة تفتح النفس'}
-          </h1>
-
-          <p className="text-xs sm:text-base text-[#55453B] dark:text-[#D6C9BD] leading-relaxed font-medium">
-            {isEn
-              ? 'Enjoy the mouthwatering aroma of baking at home without spending hours peeling and prepping. We clean, marinate with baladi cow ghee, and send it chilled in baking trays with chef instructions.'
-              : 'عشان ريحة البيت اللي بتفتح النفس وقت العزومة من غير وقفة وتعب في المطبخ.. جهزنا لك صواني الفرن، الكفتة، والمحاشي متبلة ومغلفة بسمن بلدي ومكونات طازة، تطلعيها من الثلاجة على الفرن مباشرة.'
-            }
-          </p>
-        </div>
-
-        {/* مزايا الجاهز على التسوية */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-center">
-          <div className="bg-white dark:bg-[#1E1713] p-4 rounded-2xl border-2 border-[#D2C4B7] dark:border-[#382A20]">
-            <Clock className="w-5 h-5 text-amber-600 mx-auto mb-1.5" />
-            <span className="text-xs font-black text-[#1F1713] dark:text-white block">{isEn ? 'Saves 3 Hours' : 'توفير 3 ساعات مطبخ'}</span>
-            <span className="text-[10px] text-[#55453B] dark:text-[#D6C9BD]">{isEn ? 'Straight to oven or grill' : 'على الفرن أو الشواية فوراً'}</span>
-          </div>
-          <div className="bg-white dark:bg-[#1E1713] p-4 rounded-2xl border-2 border-[#D2C4B7] dark:border-[#382A20]">
-            <ChefHat className="w-5 h-5 text-emerald-600 mx-auto mb-1.5" />
-            <span className="text-xs font-black text-[#1F1713] dark:text-white block">{isEn ? 'Secret Chef Marinades' : 'تتبيلات الشيف السرية'}</span>
-            <span className="text-[10px] text-[#55453B] dark:text-[#D6C9BD]">{isEn ? 'Baladi cow ghee & fresh herbs' : 'سمن بلدي وبهارات ريفية'}</span>
-          </div>
-          <div className="bg-white dark:bg-[#1E1713] p-4 rounded-2xl border-2 border-[#D2C4B7] dark:border-[#382A20]">
-            <PackageCheck className="w-5 h-5 text-blue-600 mx-auto mb-1.5" />
-            <span className="text-xs font-black text-[#1F1713] dark:text-white block">{isEn ? 'Airtight Vacuum Trays' : 'تغليف هوائي معقم'}</span>
-            <span className="text-[10px] text-[#55453B] dark:text-[#D6C9BD]">{isEn ? 'Sealed for freshness' : 'صواني محكمة لحفظ الطزاجة'}</span>
-          </div>
-          <div className="bg-white dark:bg-[#1E1713] p-4 rounded-2xl border-2 border-[#D2C4B7] dark:border-[#382A20]">
-            <Snowflake className="w-5 h-5 text-cyan-600 mx-auto mb-1.5" />
-            <span className="text-xs font-black text-[#1F1713] dark:text-white block">{isEn ? 'Never Frozen' : 'طازة وغير مجمد'}</span>
-            <span className="text-[10px] text-[#55453B] dark:text-[#D6C9BD]">{isEn ? 'Keeps 48 hrs refrigerated' : 'صالح 48 ساعة بالتبريد'}</span>
+            <div className="pt-2 flex flex-wrap gap-3 text-xs font-bold text-amber-200">
+              <span className="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-xl border border-white/10">
+                <Flame className="w-3.5 h-3.5 text-amber-400" />
+                <span>صواني فويل جاهزة للفرن</span>
+              </span>
+              <span className="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-xl border border-white/10">
+                <HeartHandshake className="w-3.5 h-3.5 text-emerald-400" />
+                <span>سمن بلدي وخضار فريش 100%</span>
+              </span>
+              <span className="flex items-center gap-1.5 bg-black/40 px-3 py-1.5 rounded-xl border border-white/10">
+                <PackageCheck className="w-3.5 h-3.5 text-amber-300" />
+                <span>تغليف محكم يحفظ التتبيلة</span>
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* أزرار التصفية والتبويب */}
-        <div className="flex flex-wrap items-center justify-center gap-2">
+        {/* أزرار التبويبات والتصنيف السريع */}
+        <div className="flex flex-wrap gap-2.5 sm:gap-3 border-b border-[#D2C4B7]/60 dark:border-[#382A20] pb-4">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-4 py-2 rounded-xl text-xs font-black transition-all cursor-pointer ${
+              className={`px-4 sm:px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-black transition-all cursor-pointer ${
                 activeTab === tab.id
-                  ? 'bg-amber-600 text-white shadow-md scale-105'
-                  : 'bg-white dark:bg-[#1E1713] text-[#1F1713] dark:text-[#D6C9BD] border border-[#D2C4B7] dark:border-[#382A20] hover:border-amber-500'
+                  ? 'bg-[#1F1713] dark:bg-amber-600 text-white shadow-md scale-105'
+                  : 'bg-white dark:bg-[#1E1713] text-[#55453B] dark:text-[#D6C9BD] border border-[#D2C4B7] dark:border-[#382A20] hover:border-[#8A9684]'
               }`}
             >
               {tab.label}
@@ -327,105 +414,89 @@ export default function ReadyToCookPage() {
           ))}
         </div>
 
-        {/* شبكة الأطباق الجاهزة على التسوية */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* شبكة الأطباق والتجهيزات */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredDishes.map((dish) => {
-            const title = isEn ? dish.nameEn : dish.name;
-            const tagline = isEn ? dish.taglineEn : dish.tagline;
-            const desc = isEn ? dish.descriptionEn : dish.description;
-            const instructions = isEn ? dish.instructionsEn : dish.instructions;
-            const badge = isEn ? dish.badgeEn : dish.badge;
-            const weight = isEn ? dish.weightEn : dish.weight;
-            const servings = isEn ? dish.servingsEn : dish.servings;
-            const cookingTime = isEn ? dish.cookingTimeEn : dish.cookingTime;
-
+            const isAdded = !!justAdded[dish.id];
             return (
               <div
                 key={dish.id}
-                className="bg-white dark:bg-[#1E1713] rounded-3xl border-2 border-[#D2C4B7] dark:border-[#382A20] shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group"
+                className="bg-white dark:bg-[#18110D] rounded-3xl border-2 border-[#D2C4B7] dark:border-[#382A20] hover:border-[#8A9684] dark:hover:border-amber-600 transition-all shadow-md hover:shadow-xl flex flex-col overflow-hidden group"
               >
-                <div>
-                  {/* صورة الصنف */}
-                  <div className="relative aspect-video w-full overflow-hidden bg-black/10">
-                    <img
-                      src={dish.image}
-                      alt={title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src = '/images/categories/grills.jpg';
-                      }}
-                    />
-                    <div className="absolute top-3 right-3 bg-amber-700/90 text-white text-[11px] font-black px-3 py-1 rounded-full backdrop-blur-md shadow-xs">
-                      {badge}
-                    </div>
-                    <div className="absolute bottom-3 right-3 left-3 bg-black/75 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-xl flex items-center justify-between">
-                      <span className="flex items-center gap-1 font-bold">
-                        <Clock className="w-3.5 h-3.5 text-amber-400" />
-                        <span>{cookingTime}</span>
-                      </span>
-                      <span className="text-[11px] text-amber-300 font-semibold">
-                        {weight} • {servings}
-                      </span>
-                    </div>
+                {/* صورة الصنف مع الشارة */}
+                <div className="relative h-48 w-full overflow-hidden bg-stone-100 dark:bg-stone-900">
+                  <img
+                    src={dish.image}
+                    alt={isEn ? dish.nameEn : dish.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-3 right-3 bg-[#1F1713]/85 text-amber-300 backdrop-blur-xs text-[11px] font-black px-3 py-1 rounded-full border border-amber-300/30">
+                    {isEn ? dish.badgeEn : dish.badge}
                   </div>
+                  <div className="absolute bottom-3 left-3 bg-black/70 text-white text-[10px] font-bold px-2.5 py-1 rounded-lg backdrop-blur-xs flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-amber-400" />
+                    <span>{isEn ? dish.cookingTimeEn : dish.cookingTime}</span>
+                  </div>
+                </div>
 
-                  {/* تفاصيل وتتبيلة الصنف */}
-                  <div className="p-5 sm:p-6 space-y-3.5">
-                    <h3 className="text-base sm:text-lg font-black text-[#1F1713] dark:text-white leading-snug">
-                      {title}
+                {/* تفاصيل الطبق والتعليمات */}
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-2">
+                    <h3 className="font-black text-base text-[#1F1713] dark:text-white leading-snug">
+                      {isEn ? dish.nameEn : dish.name}
                     </h3>
-                    <p className="text-xs text-amber-800 dark:text-amber-400 font-bold">
-                      {tagline}
+                    <p className="text-xs text-[#8A9684] dark:text-amber-400 font-bold">
+                      {isEn ? dish.taglineEn : dish.tagline}
                     </p>
-                    <p className="text-xs text-[#55453B] dark:text-[#D6C9BD] leading-relaxed font-medium">
-                      {desc}
+                    <p className="text-xs text-[#55453B] dark:text-[#A09383] leading-relaxed">
+                      {isEn ? dish.descriptionEn : dish.description}
                     </p>
+                  </div>
 
-                    {/* طريقة التسوية المقترحة من الشيف */}
-                    <div className="p-3 rounded-xl bg-[#FAF5EE] dark:bg-[#261D17] border border-[#D2C4B7]/60 dark:border-[#382A20] space-y-1">
-                      <span className="text-[10px] font-black text-amber-800 dark:text-amber-300 flex items-center gap-1">
-                        <Flame className="w-3.5 h-3.5" />
-                        <span>{isEn ? 'Chef Cooking Instructions:' : 'طريقة التسوية من الشيف:'}</span>
-                      </span>
-                      <p className="text-[11px] text-[#55453B] dark:text-[#D6C9BD] leading-relaxed font-medium">
-                        {instructions}
-                      </p>
+                  {/* طريقة التسوية السريعة */}
+                  <div className="bg-[#FAF5EE] dark:bg-[#20150E] p-3 rounded-2xl border border-[#D2C4B7]/60 dark:border-[#382A20] text-[11px] text-[#55453B] dark:text-[#D6C9BD] space-y-1">
+                    <div className="font-black text-[#1F1713] dark:text-white flex items-center gap-1">
+                      <Flame className="w-3.5 h-3.5 text-amber-600" />
+                      <span>{isEn ? 'Easy Home Prep:' : 'طريقة التسوية بالبيت:'}</span>
                     </div>
-                  </div>
-                </div>
-
-                {/* السعر وزر الإضافة للسلة */}
-                <div className="p-5 sm:p-6 pt-0 flex items-center justify-between border-t border-[#D2C4B7]/40 dark:border-[#382A20]/40 mt-3">
-                  <div>
-                    <span className="text-xs text-[#55453B] dark:text-[#D6C9BD] block font-medium">{isEn ? 'Price' : 'السعر'}</span>
-                    <span className="text-lg font-black text-amber-600 dark:text-amber-400 font-serif">
-                      {dish.price} {t('egp')}
-                    </span>
+                    <p className="leading-normal">{isEn ? dish.instructionsEn : dish.instructions}</p>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={() => handleAddToCart(dish)}
-                    className={`px-4 py-2.5 rounded-2xl font-black text-xs transition-all shadow-md active:scale-95 cursor-pointer flex items-center gap-1.5 ${
-                      justAdded[dish.id]
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-[#1F1713] dark:bg-amber-600 hover:bg-[#2B221D] text-white border border-[#8A9684]/40'
-                    }`}
-                  >
-                    {justAdded[dish.id] ? (
-                      <>
-                        <Check className="w-4 h-4 stroke-[3]" />
-                        <span>{t('bestSellersAddedSuccess')}</span>
-                      </>
-                    ) : (
-                      <>
-                        <Plus className="w-4 h-4" />
-                        <span>{t('bestSellersAddQuick')}</span>
-                      </>
-                    )}
-                  </button>
-                </div>
+                  {/* تفاصيل الحجم والسعر والزر */}
+                  <div className="pt-2 border-t border-[#D2C4B7]/40 dark:border-[#382A20] flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] text-stone-500 dark:text-stone-400 block">
+                        {isEn ? dish.weightEn : dish.weight} • {isEn ? dish.servingsEn : dish.servings}
+                      </span>
+                      <span className="text-base sm:text-lg font-black text-[#1F1713] dark:text-white">
+                        {dish.price} {t('currency')}
+                      </span>
+                    </div>
 
+                    <button
+                      type="button"
+                      onClick={() => handleAddToCart(dish)}
+                      className={`px-4 py-2.5 rounded-2xl font-black text-xs transition-all flex items-center gap-1.5 shadow-sm cursor-pointer ${
+                        isAdded
+                          ? 'bg-emerald-600 text-white'
+                          : 'bg-[#1F1713] dark:bg-amber-600 hover:bg-[#3D312A] text-white'
+                      }`}
+                    >
+                      {isAdded ? (
+                        <>
+                          <Check className="w-3.5 h-3.5" />
+                          <span>{isEn ? 'Added!' : 'أضيفت للسلة'}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Plus className="w-3.5 h-3.5" />
+                          <span>{isEn ? 'Add to Cart' : 'أضف للسلة'}</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
             );
           })}

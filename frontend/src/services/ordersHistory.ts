@@ -4,6 +4,11 @@ export interface SavedCustomerOrder {
   customerName: string;
   customerPhone: string;
   customerAddress: string;
+  deliveryDate?: string;
+  deliverySlot?: string;
+  deliveryZone?: string;
+  isInsulatedPack?: boolean;
+  dietaryNotes?: string;
   paymentMethod: string;
   paymentStatus: string;
   orderStatus?: string;

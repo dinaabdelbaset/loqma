@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\PaymentsController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AIController;
+use App\Http\Controllers\Api\SubscriptionController;
 
 // 1. الأقسام
 Route::get('/categories', [CategoryController::class, 'index']);
@@ -30,6 +31,10 @@ Route::post('/reviews', [ReviewController::class, 'store']);
 Route::post('/orders', [OrderController::class, 'store']);
 Route::get('/orders-history', [OrderController::class, 'history']);
 Route::get('/orders/{orderNumber}', [OrderController::class, 'show']);
+
+// 5.1 اشتراكات وجبات البيت (Meal Subscriptions)
+Route::post('/subscriptions', [SubscriptionController::class, 'store']);
+Route::get('/subscriptions/{subNumber}', [SubscriptionController::class, 'show']);
 
 // 6. الإعدادات والتواصل
 Route::get('/settings', [SettingController::class, 'index']);

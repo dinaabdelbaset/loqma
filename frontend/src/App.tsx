@@ -24,6 +24,7 @@ import ReviewsPage from './pages/ReviewsPage';
 import HealthyPage from './pages/HealthyPage';
 import ReadyToCookPage from './pages/ReadyToCookPage';
 import CheckoutPage from './pages/CheckoutPage';
+import SubscriptionsPage from './pages/SubscriptionsPage';
 
 function AppContent() {
   const { dir } = useLanguage();
@@ -59,6 +60,10 @@ function AppContent() {
           
           {/* صفحة جدول غداء الأسبوع المخصصة */}
           <Route path="/schedule" element={<SchedulePage />} />
+
+          {/* صفحة اشتراكات وجبات البيت الشهرية والأسبوعية */}
+          <Route path="/subscriptions" element={<SubscriptionsPage />} />
+          <Route path="/subscribe" element={<SubscriptionsPage />} />
 
           {/* صفحة الأكل الصحي ومحسوب السعرات */}
           <Route path="/healthy" element={<HealthyPage />} />

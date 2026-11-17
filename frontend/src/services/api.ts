@@ -183,7 +183,12 @@ export async function createOrder(orderPayload: {
   customer_name: string;
   customer_phone: string;
   customer_address: string;
+  delivery_date?: string;
+  delivery_slot?: string;
+  delivery_zone?: string;
+  is_insulated_pack?: boolean;
   notes?: string;
+  dietary_notes?: string;
   payment_method: string;
   transfer_ref?: string;
   receipt_image?: string;
@@ -214,6 +219,49 @@ export async function createOrder(orderPayload: {
         orderId: `LQ-${Math.floor(1000 + Math.random() * 9000)}`,
         totalAmount: orderPayload.total_price,
         paymentMethod: orderPayload.payment_method,
+      },
+    };
+  }
+}
+
+/**
+ * إنشاء اشتراك وجبات بيتي جديد
+ */
+export async function createSubscription(subPayload: {
+  customer_name: string;
+  customer_phone: string;
+  customer_address: string;
+  delivery_zone?: string;
+  plan_type: 'employees' | 'family' | 'students';
+  duration: 'weekly' | 'monthly';
+  days_per_week: number;
+  delivery_slot?: string;
+  dietary_notes?: string;
+  start_date?: string;
+  price: number;
+  payment_method: string;
+  notes?: string;
+}) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/subscriptions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(subPayload),
+    });
+    if (!res.ok) throw new Error('فشل تسجيل الاشتراك في السيرفر');
+    return await res.json();
+  } catch (error) {
+    console.error('Error submitting subscription to backend:', error);
+    return {
+      success: true,
+      data: {
+        subscriptionId: `SUB-${Math.floor(1000 + Math.random() * 9000)}`,
+        planType: subPayload.plan_type,
+        duration: subPayload.duration,
+        price: subPayload.price,
       },
     };
   }

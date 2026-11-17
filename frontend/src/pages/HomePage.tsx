@@ -10,7 +10,6 @@ import {
   ChevronRight,
   SlidersHorizontal,
   Bot,
-  Calendar,
   Users
 } from 'lucide-react';
 import CraftEvolutionHero from '../components/CraftEvolutionHero';

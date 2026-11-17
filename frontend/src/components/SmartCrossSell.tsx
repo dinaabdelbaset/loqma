@@ -21,8 +21,9 @@ export default function SmartCrossSell({ cartDishIds }: SmartCrossSellProps) {
       let isMounted = true;
 
       getSmartCrossSell(cartDishIds, language).then((res) => {
-        if (isMounted && res && res.recommendations) {
-          setRecommendations(res.recommendations);
+        if (isMounted && res) {
+          const list = Array.isArray(res) ? res : ((res as any).recommendations || []);
+          setRecommendations(list);
         }
       });
 
@@ -39,7 +40,7 @@ export default function SmartCrossSell({ cartDishIds }: SmartCrossSellProps) {
       id: item.id,
       name: item.name,
       description: item.description,
-      price: item.discounted_price, // سعر الخصم المكمل
+      price: item.discounted_price || item.price, // سعر الخصم المكمل
       categoryId: item.categoryId || 'salads',
       image: item.image,
       tag: 'إضافة مكملة للسفرة 🍽️'
@@ -95,7 +96,7 @@ export default function SmartCrossSell({ cartDishIds }: SmartCrossSellProps) {
                 </span>
                 <div className="flex items-center gap-1.5">
                   <span className="text-xs font-black text-amber-600 dark:text-amber-400">
-                    {item.discounted_price} {t('egp')}
+                    {item.discounted_price || item.price} {t('egp')}
                   </span>
                   <span className="text-[10px] text-stone-400 line-through">
                     {item.price}

@@ -14,7 +14,12 @@ class Order extends Model
         'customer_name',
         'customer_phone',
         'customer_address',
+        'delivery_date',
+        'delivery_slot',
+        'delivery_zone',
+        'is_insulated_pack',
         'notes',
+        'dietary_notes',
         'payment_method',
         'payment_status',
         'transfer_ref',
@@ -32,7 +37,9 @@ class Order extends Model
         'subtotal' => 'decimal:2',
         'delivery_fee' => 'decimal:2',
         'total_price' => 'decimal:2',
+        'deposit_amount' => 'decimal:2',
+        'remaining_amount' => 'decimal:2',
+        'is_insulated_pack' => 'boolean',
         'items' => 'array',
     ];
 }
-

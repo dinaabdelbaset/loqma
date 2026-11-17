@@ -39,8 +39,9 @@ export default function Navbar() {
   const navLinks = [
     { name: t('navHome'), path: '/' },
     { name: t('navMenu'), path: '/menu' },
-    { name: t('navHealthy'), path: '/healthy' },
+    { name: language === 'en' ? 'Subscriptions' : 'اشتراكات الغداء 🍲', path: '/subscriptions' },
     { name: t('navReadyToCook'), path: '/ready-to-cook' },
+    { name: t('navHealthy'), path: '/healthy' },
     { name: t('navSchedule'), path: '/schedule' },
     { name: t('navReviews'), path: '/reviews' },
     { name: t('navAbout'), path: '/about' },

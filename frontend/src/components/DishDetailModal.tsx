@@ -192,6 +192,23 @@ function DishDetailModalContent({
     }));
   };
 
+  // خيارات نَفَس الطبخة والدايت البيتي
+  const homeKitchenOptions = useMemo(() => [
+    { id: 'low_salt', label: isEn ? '🧂 Very Low Salt (Blood Pressure)' : '🧂 ملح خفيف جداً (لمرضى الضغط)' },
+    { id: 'low_fat', label: isEn ? '🧈 Light Ghee / Low Fat (Diabetes & Seniors)' : '🧈 سمن خفيف / قليل الدهون (لكبار السن والسكر)' },
+    { id: 'mild_spices', label: isEn ? '👶 No Chili / Gentle Spices (Kids)' : '👶 بدون شطة / بهارات هادية (للأطفال)' },
+    { id: 'crust_golden', label: isEn ? '🥮 Light Golden Broil' : '🥮 تحمير دهبي هادي' },
+    { id: 'crust_crisp', label: isEn ? '🔥 Well-done Crispy Crust' : '🔥 تحمير مقمر ومقرمش ع الوش' },
+  ], [isEn]);
+
+  const [selectedHomeOptions, setSelectedHomeOptions] = useState<string[]>([]);
+
+  const toggleHomeOption = (label: string) => {
+    setSelectedHomeOptions((prev) => 
+      prev.includes(label) ? prev.filter((o) => o !== label) : [...prev, label]
+    );
+  };
+
   const handleAddToCart = () => {
     const activeAddons: CartAddon[] = AVAILABLE_ADDONS_DATA
       .filter((a) => selectedAddons[a.id])
@@ -201,6 +218,11 @@ function DishDetailModalContent({
         price: a.price,
       }));
 
+    const finalInstructions = [
+      selectedHomeOptions.length > 0 ? `[نَفَس الطبخة: ${selectedHomeOptions.join(' - ')}]` : '',
+      specialInstructions.trim()
+    ].filter(Boolean).join(' | ');
+
     addCustomizedToCart({
       item: dish,
       quantity,
@@ -209,7 +231,7 @@ function DishDetailModalContent({
       stuffing: selectedStuffing,
       cookingStyle: selectedCookingStyle,
       addons: activeAddons,
-      specialInstructions,
+      specialInstructions: finalInstructions,
       unitPrice,
     });
 
@@ -461,10 +483,44 @@ function DishDetailModalContent({
             </div>
           </div>
 
-          {/* 5. ملاحظات الشيف الخاصة */}
+          {/* 5. تخصيص نَفَس الطبخة والدايت والمرضى */}
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-xs sm:text-sm font-black text-[#1F1713] dark:text-white flex items-center gap-1.5">
+                <ChefHat className="w-4 h-4 text-[#8A9684]" />
+                <span>{isEn ? "Personalized Home Cooking & Diet (Optional):" : "نَفَس الطبخة والدايت البيتي (رعاية خاصة):"}</span>
+              </label>
+              <span className="text-[10px] text-amber-700 dark:text-amber-400 font-bold bg-amber-50 dark:bg-amber-950/40 px-2 py-0.5 rounded-full border border-amber-200/50">
+                {isEn ? "Care for Family" : "اهتمام بصحة عائلتك"}
+              </span>
+            </div>
+            
+            <div className="flex flex-wrap gap-2">
+              {homeKitchenOptions.map((opt) => {
+                const isSelected = selectedHomeOptions.includes(opt.label);
+                return (
+                  <button
+                    key={opt.id}
+                    type="button"
+                    onClick={() => toggleHomeOption(opt.label)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all border flex items-center gap-1.5 cursor-pointer ${
+                      isSelected
+                        ? 'border-[#2D4F35] bg-[#2D4F35] text-white shadow-xs'
+                        : 'border-[#D2C4B7] dark:border-[#382A20] bg-white dark:bg-[#241A14] text-[#3D312A] dark:text-[#E2D9D0] hover:border-[#8A9684]'
+                    }`}
+                  >
+                    <span>{opt.label}</span>
+                    {isSelected && <Check className="w-3.5 h-3.5 text-white" />}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* 6. ملاحظات الشيف الخاصة */}
           <div>
             <label className="block text-xs sm:text-sm font-bold text-[#1F1713] dark:text-white mb-1.5">
-              {isEn ? "Special Chef Instructions (Optional):" : "ملاحظات خاصة للشيف (اختياري):"}
+              {isEn ? "Special Chef Instructions (Optional):" : "ملاحظات إضافية للشيف (اختياري):"}
             </label>
             <input
               type="text"
