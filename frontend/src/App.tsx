@@ -25,6 +25,8 @@ import HealthyPage from './pages/HealthyPage';
 import ReadyToCookPage from './pages/ReadyToCookPage';
 import CheckoutPage from './pages/CheckoutPage';
 import SubscriptionsPage from './pages/SubscriptionsPage';
+import OrderTrackingPage from './pages/OrderTrackingPage';
+import KitchenDisplayPage from './pages/KitchenDisplayPage';
 
 function AppContent() {
   const { dir } = useLanguage();
@@ -83,6 +85,14 @@ function AppContent() {
 
           {/* صفحة إتمام الطلب وبوابات الدفع المستقلة */}
           <Route path="/checkout" element={<CheckoutPage />} />
+
+          {/* صفحة تتبع تجهيز الوجبة المباشر في المطبخ */}
+          <Route path="/track" element={<OrderTrackingPage />} />
+          <Route path="/track/:orderNumber" element={<OrderTrackingPage />} />
+
+          {/* شاشة تشغيل المطبخ البيتي وتنظيم الطهي */}
+          <Route path="/kitchen" element={<KitchenDisplayPage />} />
+          <Route path="/kds" element={<KitchenDisplayPage />} />
 
           {/* صفحة الملف الشخصي وحساب العميل وسجل الطلبات */}
           <Route path="/profile" element={<ProfilePage />} />

@@ -260,21 +260,29 @@ export default function CheckoutPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            <Link
+              to={`/track/${completedOrder.orderId}`}
+              className="flex-1 py-3 px-4 rounded-xl bg-[#26472A] hover:bg-[#1E3922] text-white font-black text-xs flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+            >
+              <Clock className="w-4 h-4 text-amber-300" />
+              <span>تتبع تجهيز الوجبة بالمطبخ مباشرة ⏱️</span>
+            </Link>
+
             <a
               href={`https://wa.me/${waPhone}?text=${waText}`}
               target="_blank"
               rel="noreferrer"
-              className="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
+              className="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
             >
               <Smartphone className="w-4 h-4" />
-              <span>متابعة تفاصيل الغداء عبر واتساب</span>
+              <span>تأكيد واتساب</span>
             </a>
 
             <Link
               to="/profile"
-              className="py-3 px-5 rounded-xl border border-[#D2C4B7] dark:border-[#382A20] bg-white dark:bg-[#251D18] hover:bg-stone-50 text-xs font-bold text-stone-700 dark:text-stone-200 flex items-center justify-center gap-1.5"
+              className="py-3 px-4 rounded-xl border border-[#D2C4B7] dark:border-[#382A20] bg-white dark:bg-[#251D18] hover:bg-stone-50 text-xs font-bold text-stone-700 dark:text-stone-200 flex items-center justify-center gap-1.5"
             >
-              <span>مشاهدة في حسابي</span>
+              <span>حسابي</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

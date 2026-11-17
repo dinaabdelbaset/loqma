@@ -133,12 +133,49 @@ class OrderController extends Controller
                 'customerName' => $order->customer_name,
                 'customerPhone' => $order->customer_phone,
                 'customerAddress' => $order->customer_address,
-                'orderStatus' => $order->order_status,
+                'deliveryDate' => $order->delivery_date,
+                'deliverySlot' => $order->delivery_slot,
+                'deliveryZone' => $order->delivery_zone,
+                'isInsulatedPack' => (bool) $order->is_insulated_pack,
+                'dietaryNotes' => $order->dietary_notes,
+                'notes' => $order->notes,
+                'orderStatus' => $order->order_status ?: 'new',
                 'paymentMethod' => $order->payment_method,
                 'paymentStatus' => $order->payment_status,
                 'totalPrice' => (float) $order->total_price,
                 'items' => $order->items,
-                'createdAt' => $order->created_at->format('Y-m-d H:i'),
+                'createdAt' => $order->created_at ? $order->created_at->toIso8601String() : now()->toIso8601String(),
+            ],
+        ]);
+    }
+
+    /**
+     * Update order status from kitchen display
+     */
+    public function updateStatus(Request $request, $orderNumber)
+    {
+        $order = Order::where('order_number', $orderNumber)->first();
+
+        if (!$order) {
+            return response()->json([
+                'success' => false,
+                'message' => 'الطلب غير موجود',
+            ], 404);
+        }
+
+        $validated = $request->validate([
+            'status' => 'required|string|in:new,cooking,baking,insulated,delivering,delivered,cancelled',
+        ]);
+
+        $order->order_status = $validated['status'];
+        $order->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'تم تحديث حالة الطلب بنجاح',
+            'data' => [
+                'orderNumber' => $order->order_number,
+                'status' => $order->order_status,
             ],
         ]);
     }
@@ -171,9 +208,14 @@ class OrderController extends Controller
                 'customerName' => $order->customer_name,
                 'customerPhone' => $order->customer_phone,
                 'customerAddress' => $order->customer_address,
+                'deliveryDate' => $order->delivery_date,
+                'deliverySlot' => $order->delivery_slot,
+                'deliveryZone' => $order->delivery_zone,
+                'isInsulatedPack' => (bool) $order->is_insulated_pack,
+                'dietaryNotes' => $order->dietary_notes,
                 'paymentMethod' => $order->payment_method,
                 'paymentStatus' => $order->payment_status,
-                'orderStatus' => $order->order_status,
+                'orderStatus' => $order->order_status ?: 'new',
                 'subtotal' => (float) $order->subtotal,
                 'deliveryFee' => (float) $order->delivery_fee,
                 'totalPrice' => (float) $order->total_price,

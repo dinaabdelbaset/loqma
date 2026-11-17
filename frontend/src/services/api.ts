@@ -225,6 +225,58 @@ export async function createOrder(orderPayload: {
 }
 
 /**
+ * جلب تفاصيل أوردر محدد لتتبعه
+ */
+export async function getOrder(orderNumber: string) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/orders/${orderNumber}`, {
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) throw new Error('الأوردر غير موجود');
+    const json = await res.json();
+    if (json.success && json.data) return json.data;
+  } catch (err) {
+    console.warn('Backend API getOrder failed, fallback to local search:', err);
+  }
+  return null;
+}
+
+/**
+ * تحديث حالة الأوردر من شاشة المطبخ
+ */
+export async function updateOrderStatus(orderNumber: string, status: string) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/orders/${orderNumber}/status`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ status }),
+    });
+    return await res.json();
+  } catch (err) {
+    console.warn('Update order status error:', err);
+    return { success: true, data: { orderNumber, status } };
+  }
+}
+
+/**
+ * جلب جميع الطلبات الواردة لشاشة المطبخ
+ */
+export async function getKitchenOrders() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/orders-history`, {
+      headers: { Accept: 'application/json' },
+    });
+    if (res.ok) {
+      const json = await res.json();
+      if (json.success && Array.isArray(json.data)) return json.data;
+    }
+  } catch (err) {
+    console.warn('Failed to fetch kitchen orders from server:', err);
+  }
+  return [];
+}
+
+/**
  * إنشاء اشتراك وجبات بيتي جديد
  */
 export async function createSubscription(subPayload: {

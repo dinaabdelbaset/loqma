@@ -9,6 +9,7 @@ import {
   Apple, 
   Scale,
   Leaf,
+  Sparkles,
   ChevronRight,
   ChevronLeft
 } from 'lucide-react';
@@ -208,6 +209,36 @@ export default function HealthyPage() {
   const isEn = language === 'en';
   const BreadcrumbArrow = isEn ? ChevronRight : ChevronLeft;
 
+  // حالات حاسبة الدايت الذكية المخصصة
+  const [calcGender, setCalcGender] = useState<'male' | 'female'>('male');
+  const [calcWeight, setCalcWeight] = useState<number>(75);
+  const [calcHeight, setCalcHeight] = useState<number>(175);
+  const [calcGoal, setCalcGoal] = useState<'fat_loss' | 'muscle_gain' | 'maintain'>('fat_loss');
+  const [showCalculator, setShowCalculator] = useState(true);
+
+  // حساب معدل السعرات والماكروز المستهدفة
+  const bmr = calcGender === 'male'
+    ? (10 * calcWeight) + (6.25 * calcHeight) - (5 * 28) + 5
+    : (10 * calcWeight) + (6.25 * calcHeight) - (5 * 28) - 161;
+
+  const tdee = Math.round(bmr * 1.35); // نشاط متوسط
+
+  const targetDailyCalories = calcGoal === 'fat_loss' 
+    ? tdee - 450 
+    : calcGoal === 'muscle_gain' 
+    ? tdee + 350 
+    : tdee;
+
+  const targetLunchCalories = Math.round(targetDailyCalories * 0.38); // 38% من اليوم لغداء مشبع
+  const targetProteinGrams = Math.round(calcWeight * (calcGoal === 'muscle_gain' ? 2.0 : 1.6));
+
+  // ترشيح أنسب طبق من القائمة ليتطابق مع الحسبة
+  const recommendedDish = HEALTHY_DISHES.find((d) => {
+    if (calcGoal === 'fat_loss') return d.calories <= 380 && d.protein >= 40;
+    if (calcGoal === 'muscle_gain') return d.protein >= 45;
+    return d.dietType === 'balanced';
+  }) || HEALTHY_DISHES[0];
+
   const handleAddToCart = (dish: HealthyDish) => {
     const cartItem: MenuItem = {
       id: dish.id,
@@ -291,6 +322,147 @@ export default function HealthyPage() {
             <span className="text-xs font-black text-[#1F1713] dark:text-white block">{isEn ? 'Fresh Steamed Greens' : 'خضار فريش ني في ني'}</span>
             <span className="text-[10px] text-[#55453B] dark:text-[#D6C9BD]">{isEn ? 'High fiber & easy digestion' : 'غني بالألياف وسهل الهضم'}</span>
           </div>
+        </div>
+
+        {/* حاسبة الدايت والماكروز الذكية التفاعلية */}
+        <div className="bg-white dark:bg-[#18110D] p-6 sm:p-8 rounded-3xl border-2 border-emerald-600/30 dark:border-[#382A20] shadow-md space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-stone-200 dark:border-stone-800">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 text-xs font-black mb-1">
+                <Sparkles className="w-4 h-4 text-emerald-600" />
+                <span>حاسبة الاحتياج اليومي والماكروز 🥗</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-black font-serif-title text-[#1F1713] dark:text-white">
+                احسب احتياج جسمك واكتشف وجبة غدائك البيتي المثالية
+              </h2>
+            </div>
+            <button
+              type="button"
+              onClick={() => setShowCalculator(!showCalculator)}
+              className="text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-3.5 py-1.5 rounded-xl border border-emerald-300 self-start cursor-pointer"
+            >
+              {showCalculator ? 'إخفاء الحاسبة' : 'فتح حاسبة الماكروز'}
+            </button>
+          </div>
+
+          {showCalculator && (
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+              {/* مدخلات الحاسبة */}
+              <div className="lg:col-span-7 space-y-4">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div>
+                    <label className="block text-[11px] font-bold text-stone-600 dark:text-stone-300 mb-1">النوع / الجنس</label>
+                    <select
+                      value={calcGender}
+                      onChange={(e) => setCalcGender(e.target.value as any)}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 text-xs font-bold focus:outline-none"
+                    >
+                      <option value="male">ذكر 👨</option>
+                      <option value="female">أنثى 👩</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-[11px] font-bold text-stone-600 dark:text-stone-300 mb-1">الوزن الحالي (كجم)</label>
+                    <input
+                      type="number"
+                      value={calcWeight}
+                      onChange={(e) => setCalcWeight(Number(e.target.value))}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 text-xs font-bold focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[11px] font-bold text-stone-600 dark:text-stone-300 mb-1">الطول (سم)</label>
+                    <input
+                      type="number"
+                      value={calcHeight}
+                      onChange={(e) => setCalcHeight(Number(e.target.value))}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 text-xs font-bold focus:outline-none"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[11px] font-bold text-stone-600 dark:text-stone-300 mb-1">الهدف الصحي</label>
+                    <select
+                      value={calcGoal}
+                      onChange={(e) => setCalcGoal(e.target.value as any)}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-300 dark:border-stone-700 bg-stone-50 dark:bg-stone-900 text-xs font-bold focus:outline-none"
+                    >
+                      <option value="fat_loss">📉 خسارة وزن وتنشيف</option>
+                      <option value="muscle_gain">💪 بناء عضلات وبروتين</option>
+                      <option value="maintain">⚖️ ثبات وصحة عامة</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* أرقام الحسبة التوضيحية */}
+                <div className="grid grid-cols-3 gap-3 p-3.5 rounded-2xl bg-stone-50 dark:bg-[#201712] border border-stone-200 dark:border-stone-800 text-center text-xs">
+                  <div>
+                    <span className="text-[10px] text-stone-500 block">احتياجك اليومي:</span>
+                    <span className="font-serif font-black text-sm sm:text-base text-stone-900 dark:text-white">
+                      {targetDailyCalories} سعرة
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-stone-500 block">حصة الغداء الموصى بها:</span>
+                    <span className="font-serif font-black text-sm sm:text-base text-emerald-700 dark:text-emerald-400">
+                      {targetLunchCalories} سعرة
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] text-stone-500 block">البروتين المستهدف:</span>
+                    <span className="font-serif font-black text-sm sm:text-base text-amber-600">
+                      {targetProteinGrams} جم / يوم
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* الوجبة المرشحة من المنيو الصحي */}
+              <div className="lg:col-span-5 bg-gradient-to-br from-emerald-50 via-[#FAF5EE] to-white dark:from-[#201A15] dark:to-[#17110C] p-4 sm:p-5 rounded-2xl border border-emerald-300 dark:border-[#382A20] space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-black uppercase text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/60 px-2.5 py-0.5 rounded-full">
+                    الوجبة المطابقة لهدفك اليوم 🎯
+                  </span>
+                  <span className="text-xs font-mono font-black text-emerald-700 dark:text-emerald-400">
+                    {recommendedDish.calories} سعرة
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <img
+                    src={recommendedDish.image}
+                    alt={recommendedDish.name}
+                    className="w-16 h-16 rounded-xl object-cover border border-stone-200 dark:border-stone-700 shrink-0"
+                  />
+                  <div className="min-w-0 flex-1 space-y-0.5">
+                    <h4 className="font-bold text-xs text-stone-900 dark:text-white truncate">
+                      {recommendedDish.name}
+                    </h4>
+                    <p className="text-[11px] text-stone-500 truncate">
+                      {recommendedDish.tagline}
+                    </p>
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-stone-600 dark:text-stone-300 pt-0.5">
+                      <span>💪 {recommendedDish.protein}جم بروتين</span>
+                      <span>• 🍞 {recommendedDish.carbs}جم كارب</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between pt-2 border-t border-stone-200 dark:border-stone-800">
+                  <span className="text-sm font-black text-stone-900 dark:text-white">
+                    {recommendedDish.price} {t('currency')}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleAddToCart(recommendedDish)}
+                    className="py-2 px-3.5 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs shadow-xs transition-all cursor-pointer flex items-center gap-1.5"
+                  >
+                    <Plus className="w-3.5 h-3.5" />
+                    <span>أضف وجبتي المحسوبة للسلة</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* أزرار التصفية والأنظمة الغذائية */}

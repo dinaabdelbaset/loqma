@@ -31,6 +31,7 @@ Route::post('/reviews', [ReviewController::class, 'store']);
 Route::post('/orders', [OrderController::class, 'store']);
 Route::get('/orders-history', [OrderController::class, 'history']);
 Route::get('/orders/{orderNumber}', [OrderController::class, 'show']);
+Route::match(['post', 'patch'], '/orders/{orderNumber}/status', [OrderController::class, 'updateStatus']);
 
 // 5.1 اشتراكات وجبات البيت (Meal Subscriptions)
 Route::post('/subscriptions', [SubscriptionController::class, 'store']);

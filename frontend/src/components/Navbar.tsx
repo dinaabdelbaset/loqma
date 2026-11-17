@@ -40,6 +40,7 @@ export default function Navbar() {
     { name: t('navHome'), path: '/' },
     { name: t('navMenu'), path: '/menu' },
     { name: language === 'en' ? 'Subscriptions' : 'اشتراكات الغداء 🍲', path: '/subscriptions' },
+    { name: language === 'en' ? 'Track Order' : 'تتبع وجبتك ⏱️', path: '/track' },
     { name: t('navReadyToCook'), path: '/ready-to-cook' },
     { name: t('navHealthy'), path: '/healthy' },
     { name: t('navSchedule'), path: '/schedule' },

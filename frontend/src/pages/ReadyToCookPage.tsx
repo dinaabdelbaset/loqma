@@ -35,7 +35,7 @@ export interface ReadyToCookDish {
   cookingTimeEn: string;
   badge: string;
   badgeEn: string;
-  category: 'oven_trays' | 'frozen_fry' | 'sauces_prep';
+  category: 'oven_trays' | 'frozen_fry' | 'sauces_prep' | 'pantry_spices';
 }
 
 export const READY_DISHES: ReadyToCookDish[] = [
@@ -307,12 +307,146 @@ export const READY_DISHES: ReadyToCookDish[] = [
     badge: 'مرقة طبيعية 100% 🍲',
     badgeEn: '100% Natural Broth 🍲',
     category: 'sauces_prep'
+  },
+
+  // 4. برطمانات وخيرات ومونة ست البيت
+  {
+    id: 9513,
+    name: 'برطمان سمنة بلدي بقري فلاحي صافي 100% (1 كجم زجاجي)',
+    nameEn: 'Pure Baladi Cow Ghee Rustic Jar (1 kg)',
+    tagline: 'سمن بلدي أصلية من مزارع الريف المصري على الفرازة ومغلية على الحطب',
+    taglineEn: '100% pure authentic countryside cow ghee simmered slowly on woodfire',
+    description: 'رائحة وطعم الأكل المصري الأصيل، بدون أي إضافات أو زيوت نباتية. نضمن نقاءها وجودتها المفرزة.',
+    descriptionEn: 'The true aroma of Egyptian village kitchens. Zero additives, pure gold.',
+    instructions: 'تحفظ في الثلاجة أو المطبخ، ملعقة واحدة تعمر أي طاجن أو أرز أو بيض بلدي.',
+    instructionsEn: 'Store in cool pantry. One spoonful enriches any tajine, rice, or eggs.',
+    price: 340,
+    weight: 'برطمان زجاجي 1 كجم',
+    weightEn: '1 kg Glass Jar',
+    image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=500&q=80',
+    servings: 'تكفي شهرين طبخ',
+    servingsEn: 'Lasts 2 Months',
+    cookingTime: 'جاهز للاستخدام الفوري',
+    cookingTimeEn: 'Ready to use',
+    badge: 'سمنة بلدي أصلية 🧈',
+    badgeEn: '100% Pure Ghee 🧈',
+    category: 'pantry_spices'
+  },
+  {
+    id: 9514,
+    name: 'برطمان خلطة بهارات المحشي الفلاحي السرية (250 جم)',
+    nameEn: 'Secret Baladi Mahshi Herb Spice Blend (250g)',
+    tagline: 'توليفة من 12 نوع بهار مصري محمص ومطحون طازج بنعناع بلدي وزعتر وكمون بلدي',
+    taglineEn: 'Roasted blend of 12 artisan Egyptian spices with dry mint, cumin, and coriander',
+    description: 'سر ريحة المحشي اللي تقلب الشارع! تضاف لخلطة الأرز وصلصة الطماطم فتعطي نكهة معتقة متميزة.',
+    descriptionEn: 'The secret aroma behind authentic Egyptian stuffed cabbage & vine leaves.',
+    instructions: 'أضيفي ملعقة كبيرة لكل كيلو أرز محشي أثناء تسبيك الطماطم على النار.',
+    instructionsEn: 'Add 1 tablespoon per 1kg rice during tomato simmer.',
+    price: 65,
+    weight: 'عبوة 250 جم',
+    weightEn: '250g Jar',
+    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=500&q=80',
+    servings: 'تكفي 15 حلة محشي',
+    servingsEn: 'Makes 15 pots',
+    cookingTime: 'فوري مع الخلطة',
+    cookingTimeEn: 'Instant blend',
+    badge: 'خلطة سرية للأمهات 🌿',
+    badgeEn: 'Secret Blend 🌿',
+    category: 'pantry_spices'
+  },
+  {
+    id: 9515,
+    name: 'برطمان بهارات كفتة الحاتي والمشويات البلدية (250 جم)',
+    nameEn: 'Hati Kofta & Grill Seasoning Rub (250g)',
+    tagline: 'بهارات الكبابجي الأصلية مع جوزة الطيب والكبابة الصيني والمستكة المطحونة',
+    taglineEn: 'Authentic grill-master seasoning with nutmeg, allspice, and ground mastic',
+    description: 'السر في تماسك الكفتة المشوية ورائحة الفحم الشهية، بدون الحاجة لأي إضافات صناعية.',
+    descriptionEn: 'Keeps meat skewers juicy, aromatic, and firm without artificial meat binders.',
+    instructions: 'تضاف ملعقة ونصف لكل كيلو لحم مفروم مع ماء البصل قبل التشكيل بساعتين.',
+    instructionsEn: 'Mix 1.5 tbsp per 1kg minced meat with onion water 2 hours before grilling.',
+    price: 70,
+    weight: 'عبوة 250 جم',
+    weightEn: '250g Jar',
+    image: 'https://images.unsplash.com/photo-1509358271058-acd22cc93898?w=500&q=80',
+    servings: 'تكفي 10 كجم كفتة',
+    servingsEn: 'For 10 kg meat',
+    cookingTime: 'تتبيل فوري',
+    cookingTimeEn: 'Instant Rub',
+    badge: 'سر كفتة الحاتي 🥩',
+    badgeEn: 'Hati Secret 🥩',
+    category: 'pantry_spices'
+  },
+  {
+    id: 9516,
+    name: 'برطمان ليمون معصفر فلاحي بحبة البركة والعصفر وزيت الزيتون (1 كجم)',
+    nameEn: 'Artisan Pickled Baladi Lemon with Nigella & Saffron (1 kg)',
+    tagline: 'ليمون بنزهير بلدي مسلوق على الهادي ومحشو عصفر وحبة البركة ومغمور بزيت الزيتون',
+    taglineEn: 'Aged Egyptian lemons stuffed with safflower & black seed in olive oil',
+    description: 'دايب كالملبن وحامض ومزبوط الملح بدون أي مواد حافظة، يفتح النفس جنب أي طاجن أو ملوخية.',
+    descriptionEn: 'Melt-in-mouth pickled lemons cured naturally with no chemical accelerators.',
+    instructions: 'يقدم فوراً كمقبلات فاخرة بجانب وجبات الغداء والمشويات والصواني.',
+    instructionsEn: 'Serve straight from jar as gourmet appetizing side dish.',
+    price: 85,
+    weight: 'برطمان 1 كجم صافي',
+    weightEn: '1 kg Net Jar',
+    image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=500&q=80',
+    servings: 'تكفي شهرين مقبلات',
+    servingsEn: 'Lasts 2 Months',
+    cookingTime: 'جاهز للأكل فوراً',
+    cookingTimeEn: 'Ready to Eat',
+    badge: 'معصفر دايب ملبن 🍋',
+    badgeEn: 'Artisan Pickled 🍋',
+    category: 'pantry_spices'
+  },
+  {
+    id: 9517,
+    name: 'برطمان باذنجان مخلل بالثوم والدقة والفلفل الأحمر البلدي (750 جم)',
+    nameEn: 'Garlic & Red Chili Pickled Baladi Eggplant (750g)',
+    tagline: 'باذنجان عروس بنفسجي مقلي خفيف ومحشي دقة ثوم بلدي وخل وفلفل أحمر شطة مفروم',
+    taglineEn: 'Tender purple baby eggplant stuffed with garlic, vinegar, and crushed red peppers',
+    description: 'المقبلات الرسمية للملوخية والبامية والبشاميل، متبل على أصوله ومغمور بزيت زيتون وخل.',
+    descriptionEn: 'The traditional sidekick for molokhia and tajines. Spicy, garlicky, and tangy.',
+    instructions: 'يقدم بارداً بجانب وجبة الغداء.',
+    instructionsEn: 'Serve chilled alongside home meals.',
+    price: 60,
+    weight: 'برطمان 750 جم',
+    weightEn: '750g Jar',
+    image: 'https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=500&q=80',
+    servings: 'تكفي 10 وجبات',
+    servingsEn: '10 Meals',
+    cookingTime: 'جاهز للأكل فوراً',
+    cookingTimeEn: 'Ready to Eat',
+    badge: 'دقة ريفية حكاية 🍆',
+    badgeEn: 'Garlic Tangy 🍆',
+    category: 'pantry_spices'
+  },
+  {
+    id: 9518,
+    name: 'برطمان طشة ثوم وكزبرة فلاحي مجهزة على الطبخ (350 جم)',
+    nameEn: 'Prepped Sizzling Garlic & Ghee Tasha Jar (350g)',
+    tagline: 'ثوم صعيدي فريش مفروم ومشوّح نصف تشويحة بالسمن البلدي والكزبرة الناشفة المطحونة',
+    taglineEn: 'Minced fresh garlic par-cooked in cow ghee with toasted coriander seeds',
+    description: 'وفري وقت دق الثوم! ملعقة واحدة على وش الملوخية أو البامية أو الفتة وتسمعي الطشة فوراً.',
+    descriptionEn: 'Saves garlic prep time. One spoon in hot pan for the ultimate sizzling aroma.',
+    instructions: 'سخني ملعقة في طاسة صغيرة 30 ثانية وصبيها على وش الملوخية أو الطاجن.',
+    instructionsEn: 'Heat 1 tbsp in small skillet for 30s and pour sizzling over your soup.',
+    price: 55,
+    weight: 'برطمان 350 جم',
+    weightEn: '350g Jar',
+    image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=500&q=80',
+    servings: 'تكفي 20 طشة',
+    servingsEn: '20 Tasha Servings',
+    cookingTime: '30 ثانية تسخين',
+    cookingTimeEn: '30 secs sizzle',
+    badge: 'طشة الملوخية الفلاحي 🧄',
+    badgeEn: 'Sizzling Tasha 🧄',
+    category: 'pantry_spices'
   }
 ];
 
 export default function ReadyToCookPage() {
   const { addToCart } = useCart();
-  const [activeTab, setActiveTab] = useState<'all' | 'oven_trays' | 'frozen_fry' | 'sauces_prep'>('all');
+  const [activeTab, setActiveTab] = useState<'all' | 'oven_trays' | 'frozen_fry' | 'sauces_prep' | 'pantry_spices'>('all');
   const [justAdded, setJustAdded] = useState<{ [id: number]: boolean }>({});
   const { language, dir, t } = useLanguage();
   const isEn = language === 'en';
@@ -341,10 +475,11 @@ export default function ReadyToCookPage() {
     : READY_DISHES.filter((d) => d.category === activeTab);
 
   const tabs = [
-    { id: 'all', label: isEn ? 'All Ready-to-Cook (12)' : 'كافة المفرزنات والتجهيزات (12)' },
+    { id: 'all', label: isEn ? 'All Ready-to-Cook (18)' : 'كافة الأصناف والمونة (18)' },
     { id: 'oven_trays', label: isEn ? 'Oven-Ready Trays' : '🥘 صواني على الفرن مباشرة' },
     { id: 'frozen_fry', label: isEn ? 'Ready to Fry & Grill' : '🥟 مفرزنات على القلي والشوي' },
     { id: 'sauces_prep', label: isEn ? 'Homemade Sauces & Prep' : '🍅 صلصات وتجهيزات ست البيت' },
+    { id: 'pantry_spices', label: isEn ? 'Rustic Pantry & Spices' : '🏺 برطمانات وخيرات ومونة البيت' },
   ];
 
   return (
