@@ -76,15 +76,21 @@ export default function FooterBoho() {
           </h4>
           <ul className="space-y-2 text-xs text-[#E8DFD5] font-semibold">
             <li>
+              <Link to="/subscriptions" className="hover:text-amber-300 transition-colors flex items-center gap-1.5">
+                <span className="text-amber-300">🍱</span>
+                <span>{language === 'ar' ? 'اشتراكات وجبات البيت (شهري وأسبوعي)' : 'Meal Subscriptions (Weekly/Monthly)'}</span>
+              </Link>
+            </li>
+            <li>
               <Link to="/healthy" className="hover:text-amber-300 transition-colors flex items-center gap-1.5">
                 <span className="text-emerald-400">🥗</span>
-                <span>{language === 'ar' ? 'أكل صحي محسوب السعرات' : 'Healthy Low-Calorie Food'}</span>
+                <span>{language === 'ar' ? 'أكل صحي ومحسوب السعرات' : 'Healthy Low-Calorie Food'}</span>
               </Link>
             </li>
             <li>
               <Link to="/ready-to-cook" className="hover:text-amber-300 transition-colors flex items-center gap-1.5">
                 <span className="text-amber-400">🔥</span>
-                <span>{language === 'ar' ? 'متبل جاهز على التسوية والفرن' : 'Ready to Cook & Bake'}</span>
+                <span>{language === 'ar' ? 'مفرزنات ومونة ست البيت' : 'Ready to Cook & Pantry'}</span>
               </Link>
             </li>
             <li>
@@ -118,6 +124,16 @@ export default function FooterBoho() {
             <li>
               <Link to="/about" className="hover:text-amber-300 transition-colors">
                 • {language === 'ar' ? 'قصة لقمة ومعايير الجودة' : 'About Loqma & Quality Standards'}
+              </Link>
+            </li>
+            <li>
+              <Link to="/track" className="hover:text-amber-300 transition-colors flex items-center gap-1.5">
+                <span>• {language === 'ar' ? 'تتبع وجبتك والطلب لايف ⏱️' : 'Live Order Tracking ⏱️'}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/kitchen" className="hover:text-amber-300 transition-colors flex items-center gap-1.5">
+                <span>• {language === 'ar' ? 'شاشة طباخات المطبخ (KDS) 🍳' : 'Kitchen Display System (KDS)'}</span>
               </Link>
             </li>
             <li>

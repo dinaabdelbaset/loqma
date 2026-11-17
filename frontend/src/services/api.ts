@@ -1,8 +1,8 @@
-import { 
-  MENU_CATEGORIES, 
-  INITIAL_MENU_ITEMS, 
-  type MenuCategory, 
-  type MenuItem 
+import {
+  MENU_CATEGORIES,
+  INITIAL_MENU_ITEMS,
+  type MenuCategory,
+  type MenuItem
 } from '../data/menuData';
 
 // الرابط الأساسي للـ API الخاص بلارافيل

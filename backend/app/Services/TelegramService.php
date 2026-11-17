@@ -131,6 +131,58 @@ class TelegramService
         return $sent;
     }
 
+    /**
+     * إرسال إشعار فوري لموبايل الإدارة والمطبخ عند تسجيل اشتراك غداء بيتي جديد
+     */
+    public static function sendSubscriptionNotification($sub)
+    {
+        $botToken = Setting::get('telegram_bot_token', '9090703357:AAFBGWyMBdpDJG5zfUyiGI7hzBZi3TomU4I');
+        $chatId = Setting::get('telegram_chat_id', '1448830691') ?: '1448830691';
+
+        $planLabel = match($sub->plan_type) {
+            'employees' => 'باقة الموظفين والشركات 💼',
+            'family' => 'باقة الأمهات والأسرة 👑',
+            'students' => 'باقة المغتربين والطلبة 🎓',
+            default => $sub->plan_type
+        };
+
+        $durationLabel = $sub->duration === 'monthly' ? 'اشتراك شهري' : 'اشتراك أسبوعي';
+
+        $paymentLabel = match ($sub->payment_method) {
+            'instapay' => 'إنستاباي (InstaPay) ⚡',
+            'vodafone' => 'فودافون كاش 📱',
+            'card' => 'فيزا / بطاقة بنكية 💳',
+            default => 'كاش عند الاستلام 💵',
+        };
+
+        $msg = "🌟 *اشتراك وجبات بيتية جديد! | لقمة LOQMA*\n";
+        $msg .= "━━━━━━━━━━━━━━━━━━━━\n";
+        $msg .= "📌 *رقم الاشتراك:* `{$sub->subscription_number}`\n";
+        $msg .= "🍱 *نوع الباقة:* {$planLabel}\n";
+        $msg .= "⏳ *المدة:* {$durationLabel} ({$sub->days_per_week} أيام في الأسبوع)\n";
+        $msg .= "👤 *اسم العميل:* {$sub->customer_name}\n";
+        $msg .= "📞 *تليفون العميل:* `{$sub->customer_phone}`\n";
+        $msg .= "📍 *العنوان:* {$sub->customer_address}\n";
+        if (!empty($sub->delivery_zone)) {
+            $msg .= "🏘️ *المنطقة:* {$sub->delivery_zone}\n";
+        }
+        if (!empty($sub->delivery_slot)) {
+            $msg .= "⏰ *موعد الغداء اليومي:* {$sub->delivery_slot}\n";
+        }
+        if (!empty($sub->dietary_notes)) {
+            $msg .= "🌿 *نَفَس الطبخة والدايت:* {$sub->dietary_notes}\n";
+        }
+        if (!empty($sub->notes)) {
+            $msg .= "📝 *ملاحظات خاصة:* {$sub->notes}\n";
+        }
+        $msg .= "━━━━━━━━━━━━━━━━━━━━\n";
+        $msg .= "💰 *قيمة الاشتراك:* *{$sub->price} ج.م*\n";
+        $msg .= "💳 *طريقة الدفع:* {$paymentLabel}\n";
+        $msg .= "━━━━━━━━━━━━━━━━━━━━\n";
+
+        return self::sendTelegramCurl($botToken, $chatId, $msg);
+    }
+
     public static function sendTelegramPhoto($botToken, $chatId, $photoPath, $caption = '')
     {
         $url = "https://api.telegram.org/bot{$botToken}/sendPhoto";

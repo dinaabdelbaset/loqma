@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Subscription;
+use App\Services\TelegramService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SubscriptionController extends Controller
 {
@@ -51,6 +53,13 @@ class SubscriptionController extends Controller
             'status' => 'pending',
             'notes' => $validated['notes'] ?? null,
         ]);
+
+        // إرسال إشعار فوري لتليجرام صاحب المطبخ ببيانات الاشتراك
+        try {
+            TelegramService::sendSubscriptionNotification($subscription);
+        } catch (\Exception $e) {
+            Log::error('Telegram subscription dispatch error: ' . $e->getMessage());
+        }
 
         return response()->json([
             'success' => true,
